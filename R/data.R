@@ -1,0 +1,36 @@
+#' Corpus étudié
+#'
+#' Résultats des analyses WDXRF du corpus de céramiques et de tessons non cuits
+#' provenant de l'atelier du Mas de Moreno (Foz-Calanda, Teruel, Espagne).
+#' @format Un \code{\link[=data.frame]{tableau de données}} de 114 lignes
+#'  (échantillons) et 30 colonnes (variables) :
+#'  \describe{
+#'    \item{sample}{Référence de l'échantillon.}
+#'    \item{date}{Date de l'analyse.}
+#'    \item{laboratory}{Laboratoire d'analyse.}
+#'    \item{stratigraphy}{Unité stratigraphique.}
+#'    \item{artefact}{Eléménts de typologie.}
+#'    \item{part}{Portion analysée.}
+#'    \item{decoration}{Présence d'un décor peint ?}
+#'    \item{LOI}{Perte-au-feu (pourcents).}
+#'    \item{CaO, Fe2O3, TiO2 , K2O, SiO2 , Al2O3 , MgO, MnO, P2O5,
+#'    Zr, Sr, Rb, Zn, Cr, Ni, La, Ba, V, Ce, Y, Cu}{Teneurs (pourcents).}
+#'  }
+#' @source
+#'  Frerebeau, N. and Sacilotto, C. (2017). On Some Iberian Unfired
+#'  Pottery Sherds from the Late Iron Age (Second Century BC).
+#'  In Gorgues, A., Rebay-Salisbury, K. and Salisbury, R. B. (eds.),
+#'  \emph{Material Chains in Late Prehistoric Europe and the Mediterranean -
+#'  Time, Space and Technologies of Production}. Bordeaux: Ausonius Éditions,
+#'  p. 157-169. Mémoires, 48.
+#'
+#'  Frerebeau, N. (2015). WDXRF Analysis of Iberian Unfired Potsherds from
+#'  the Late Iron Age [Data set]. \emph{Zenodo}.
+#'  DOI : \href{https://doi.org/10.5281/zenodo.1414297}{10.5281/zenodo.1414297}.
+#' @examples
+#' # Extrait des premières lignes
+#' head(corpus)
+#'
+#' # Résumé des données
+#' summary(corpus)
+"corpus"

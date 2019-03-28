@@ -1,0 +1,19 @@
+citHeader("To cite this compendium use:")
+
+citEntry(entry       = "Manual",
+         title       = "Compendium of R code and data for 'Le cru et le cuit :
+                       processus post-dépôt et altérations différentielles des
+                       matériaux céramiques'",
+         author      = personList(as.person("Nicolas Frerebeau"),
+                                   as.person("Ayed Ben Amara"),
+                                   as.person("Nadia Cantin")),
+         year        = "2019",
+         doi         = "XXX",
+
+         textVersion =
+           paste("Frerebeau, N., Ben Amara, A. et Cantin, N. (2019).
+                 Compendium of R code and data for 'Le cru et le cuit :
+                 processus post-dépôt et altérations différentielles des
+                 matériaux céramiques'. Accessed ", Sys.Date(), ". Online at
+                 <https://doi.org/xxx/xxx>", sep = "")
+)

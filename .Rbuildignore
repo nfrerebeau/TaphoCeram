@@ -1,0 +1,8 @@
+^LICENSE\.md$
+^README\.Rmd$
+^doc$
+^archeosciences2019\.Rproj$
+^\.Rproj\.user$
+^packrat/
+^analysis/
+^\.Rprofile$
