@@ -3,7 +3,7 @@
 archeosciences2019
 ==================
 
-[![GitHub Release](https://img.shields.io/github/release/nfrerebeau/archeosciences2019.svg)](https://github.com/nfrerebeau/archeosciences2019/releases)
+[![GitHub Release](https://img.shields.io/github/release/nfrerebeau/archeosciences2019.svg)](https://github.com/nfrerebeau/archeosciences2019/releases) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2613513.svg)](https://doi.org/10.5281/zenodo.2613513)
 
 This repository contains all code and text associated with the publication (in french):
 
@@ -16,7 +16,7 @@ How to cite
 
 Please cite this compendium as:
 
-> Frerebeau, N., Ben Amara, A. et Cantin, N. (2019). *Compendium of R code and data for "Le cru et le cuit : processus post-dépôt et altérations différentielles des matériaux céramiques"*. Accessed YYYY-MM-DD. Online at <https://doi.org/xxx/xxx>.
+> Frerebeau, N., Ben Amara, A. et Cantin, N. (2019). *Compendium of R code and data for "Le cru et le cuit : processus post-dépôt et altérations différentielles des matériaux céramiques"*. Accessed YYYY-MM-DD. Online at <https://doi.org/10.5281/zenodo.2613513>.
 
 Licenses
 --------
