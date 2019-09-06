@@ -21,6 +21,7 @@ options(repos = my_repos)
 ## Install CRAN packages
 cran_packages <- c(
   "akima",
+  "bookdown",
   "compositions",
   "cowplot",
   "dplyr",
@@ -30,8 +31,10 @@ cran_packages <- c(
   "ggrepel",
   "ggtern",
   "khroma",
+  "knitr",
   "magrittr",
   "MASS",
+  "rmarkdown",
   "robCompositions",
   "tidyr"
 )
