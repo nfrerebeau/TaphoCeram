@@ -3,14 +3,12 @@
 
 # archeosciences2019
 
-[![Travis-CI Build
-Status](https://travis-ci.org/nfrerebeau/archeosciences2019.svg?branch=master)](https://travis-ci.org/nfrerebeau/archeosciences2019)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/nfrerebeau/archeosciences2019/master?urlpath=rstudio)
-
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2613512.svg)](https://doi.org/10.5281/zenodo.2613512)
 [![GitHub
 Release](https://img.shields.io/github/release/nfrerebeau/archeosciences2019.svg)](https://github.com/nfrerebeau/archeosciences2019/releases)
-
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2613512.svg)](https://doi.org/10.5281/zenodo.2613512)
+[![Travis-CI Build
+Status](https://travis-ci.org/nfrerebeau/archeosciences2019.svg?branch=master)](https://travis-ci.org/nfrerebeau/archeosciences2019)
 
 This repository contains the data and code for our paper (in french):
 
@@ -81,7 +79,7 @@ Datasets (in RDA format) are located in the `data/` directory.
 
 ## Dependencies
 
-The original manuscript was produced with R 3.5.2. See the
+The original manuscript was produced with R 3.6.0. See the
 [DESCRIPTION](DESCRIPTION) file for a full list of the packages that
 this project depends on, including the suggested packages. The
 `packrat/` directory contains the source code for all the packages we

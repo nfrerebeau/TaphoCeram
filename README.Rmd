@@ -17,12 +17,10 @@ knitr::opts_chunk$set(
 
 # archeosciences2019
 
-[![Travis-CI Build Status](https://travis-ci.org/nfrerebeau/archeosciences2019.svg?branch=master)](https://travis-ci.org/nfrerebeau/archeosciences2019)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/nfrerebeau/archeosciences2019/master?urlpath=rstudio)
-
-[![GitHub Release](https://img.shields.io/github/release/nfrerebeau/archeosciences2019.svg)](https://github.com/nfrerebeau/archeosciences2019/releases)
-
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2613512.svg)](https://doi.org/10.5281/zenodo.2613512)
+[![GitHub Release](https://img.shields.io/github/release/nfrerebeau/archeosciences2019.svg)](https://github.com/nfrerebeau/archeosciences2019/releases)
+[![Travis-CI Build Status](https://travis-ci.org/nfrerebeau/archeosciences2019.svg?branch=master)](https://travis-ci.org/nfrerebeau/archeosciences2019)
 
 This repository contains the data and code for our paper (in french):
 
@@ -76,4 +74,4 @@ The `R/` directory contains the custom R functions used in this project. Dataset
 
 ## Dependencies
 
-The original manuscript was produced with R 3.5.2. See the [DESCRIPTION](DESCRIPTION) file for a full list of the packages that this project depends on, including the suggested packages. The `packrat/` directory contains the source code for all the packages we depend on. If all works well, these will be installed on your machine when you open `archeosciences2019.Rproj` in RStudio.
+The original manuscript was produced with R 3.6.0. See the [DESCRIPTION](DESCRIPTION) file for a full list of the packages that this project depends on, including the suggested packages. The `packrat/` directory contains the source code for all the packages we depend on. If all works well, these will be installed on your machine when you open `archeosciences2019.Rproj` in RStudio.
