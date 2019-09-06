@@ -1,7 +1,7 @@
 Package: archeosciences2019
 Title: Reproduction of Frerebeau, N., Ben Amara, A. and Cantin, N. (2019)
-Version: 1.0
-Date: 2019-03-26
+Version: 1.1
+Date: 2019-09-06
 Authors@R: c(person("Nicolas", "Frerebeau",
                     email = "nicolas.frerebeau@u-bordeaux-montaigne.fr",
                     role = c("aut", "cre"),
@@ -35,7 +35,7 @@ Imports:
     ggtern (>= 3.1.0),
     khroma (>= 1.2.0),
     magrittr (>= 1.5),
-    MASS (>= 7.3-51.1),
+    MASS (>= 7.3-51.4),
     robCompositions (>= 2.1.0),
     tidyr (>= 0.8.3)
 RoxygenNote: 6.1.1

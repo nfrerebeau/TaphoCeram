@@ -12,12 +12,13 @@ packrat::init(
 )
 
 # Setup repository =============================================================
-# Specify repositories so they get included in packrat.lock file
+## Specify repositories so they get included in packrat.lock file
 my_repos["CRAN"] <- "https://cloud.r-project.org/"
 options(repos = my_repos)
 
 # Install packages =============================================================
-# All packages will be installed to the project-specific packrat library
+## All packages will be installed to the project-specific packrat library
+## Install CRAN packages
 cran_packages <- c(
   "akima",
   "compositions",
@@ -35,6 +36,10 @@ cran_packages <- c(
   "tidyr"
 )
 utils::install.packages(cran_packages)
+
+## Install github packages
+# github_packages <- c("benmarwick/rrtools")
+# remotes::install_github(github_packages)
 
 # Take snapshot ================================================================
 packrat::snapshot(
