@@ -3,7 +3,6 @@
 
 # archeosciences2019
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/nfrerebeau/archeosciences2019/master?urlpath=rstudio)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2613512.svg)](https://doi.org/10.5281/zenodo.2613512)
 [![GitHub
 Release](https://img.shields.io/github/release/nfrerebeau/archeosciences2019.svg)](https://github.com/nfrerebeau/archeosciences2019/releases)
