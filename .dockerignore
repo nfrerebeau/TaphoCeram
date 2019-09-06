@@ -1,0 +1,8 @@
+.git
+.dockerignore
+^\.Rproj\.user$
+^\.Rprofile$
+^\.travis\.yml$
+^\.zenodo\.json$
+^archeosciences2019\.Rproj$
+^packrat/

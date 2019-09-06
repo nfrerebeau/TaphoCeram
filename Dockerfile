@@ -8,12 +8,15 @@ COPY . /archeosciences2019
 
 # go into the repo directory
 RUN . /etc/environment \
+
   # Install linux depedendencies here
-  # e.g. need this for ggforce::geom_sina
   && sudo apt-get update \
-  && sudo apt-get install libudunits2-dev -y \
+
   # build this compendium package
   && R -e "devtools::install('/archeosciences2019', dep=TRUE)" \
-  # render the manuscript into a docx, you'll need to edit this if you've
-  # customised the location and name of your main Rmd file
+  
+  # make project directory writable to save images and other output
+  && sudo chmod a+rwx -R archeosciences2019 \
+
+  # render the manuscript into a html document
   && R -e "rmarkdown::render('/archeosciences2019/analysis/paper/paper.Rmd')"
