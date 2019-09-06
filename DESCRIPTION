@@ -42,6 +42,7 @@ Imports:
 RoxygenNote: 6.1.1
 Suggests:
     bookdown,
+    devtools,
     knitr,
     rmarkdown,
     usethis

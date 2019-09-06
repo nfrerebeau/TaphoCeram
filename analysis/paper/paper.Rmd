@@ -2,36 +2,37 @@
 title: "Le cru et le cuit : processus post-dépôt et altérations différentielles des matériaux céramiques"
 shorttitle: "Le cru et le cuit"
 date: "Soumis à ArchéoSciences le 26 mars 2019"
-author: 
-  
-- name: Nicolas FREREBEAU
-  affiliation: 
-  - &ubm IRAMAT-CRP2A (UMR 5060, CNRS - Université Bordeaux Montaigne)
-  - Laboratoire de Mathématiques Jean Leray (UMR 6629, CNRS - Université de Nantes)
-  email: nicolas.frerebeau@u-bordeaux-montaigne.fr
-    
-- name: Ayed BEN AMARA
-  affiliation: *ubm
-  email: ayed.ben-amara@u-bordeaux-montaigne.fr
-- name: Nadia CANTIN
-  affiliation: *ubm
-  email: nadia.cantin@u-bordeaux-montaigne.fr
-abstract: >
+author:
+  - Nicolas FREREBEAU:
+      email: nicolas.frerebeau@u-bordeaux-montaigne.fr
+      institute: [UofO,UofA]
+      correspondence: true
+  - Ayed BEN AMARA:
+      email: ayed.ben-amara@u-bordeaux-montaigne.fr
+      institute: [UofO]
+      correspondence: false
+  - Nadia CANTIN:
+      email: nadia.cantin@u-bordeaux-montaigne.fr
+      institute: [UofO]
+      correspondence: false
+institute:
+  - UofO: IRAMAT-CRP2A (UMR 5060 , CNRS - Université Bordeaux Montaigne)
+  - UofA: Laboratoire de Mathématiques Jean Leray (UMR 6629, CNRS - Université de Nantes)
+abstract: |
   Dans le cadre d'études de provenance des matériaux céramiques, il est courant de comparer la composition élémentaire de matières premières argileuses avec celle d'artefacts archéologiques. Les problèmes d'altération demeurent cependant peu pris en compte et la nature de l'analogie entre matières argileuses et céramiques archéologiques n'est jamais discutée. La présente étude propose ainsi une première comparaison entre des matériaux céramiques et des tessons non cuits retrouvés dans un même contexte archéologique de la fin de l'Âge du Fer. Nos résultats illustrent l'importance d'un traitement adéquat des données de compositions et l'intérêt des développements méthodologiques dans la suite des travaux de J. Aitchison (1986). Cette approche permet d'identifier, les processus intervenant après l'abandon des artefacts, notamment liés aux mécanismes de pédogenèse, qui n'affectent pas argiles et céramiques de la même façon. L'existence d'une altération différentielle en fonction de la nature des matériaux invite à la prudence quant à l'application stricte du postulat de provenance lorsqu'il s'agit de comparer des matériaux archéologiques et géologiques.
-output:
-  bookdown::html_document2:
-    number_sections: TRUE
-    fig_caption: TRUE
-    toc: TRUE
+keywords: |
+  altération; argiles; céramiques; données de composition; provenance
+output: 
   bookdown::word_document2:
-    fig_caption: TRUE
-  bookdown::pdf_document2:
-    number_sections: TRUE
-    fig_caption: TRUE
-    toc: TRUE
+    fig_caption: yes
+    reference_docx: "../templates/template.docx"
+    pandoc_args:
+    - --lua-filter=../templates/scholarly-metadata.lua
+    - --lua-filter=../templates/author-info-blocks.lua
+    - --lua-filter=../templates/pagebreak.lua
 header-includes:
-   - \usepackage{amsmath}
-   - \usepackage{amssymb}
+  - \usepackage{amsmath}
+  - \usepackage{amssymb}
 bibliography: references.bib
 csl: "../templates/archeosciences.csl"
 editor_options: 
@@ -51,11 +52,11 @@ knitr::opts_knit$set(
 # soit passer l'option `cache.lazy = TRUE` dans `knitr::opts_chunk$set`, 
 # soit utiliser `rmarkdown::render()` dans la console.
 knitr::opts_chunk$set(
-  echo = TRUE,
-  message = TRUE,
-  collapse = TRUE,
+  echo = FALSE,
+  message = FALSE,
+  collapse = FALSE,
   comment = "#>",
-  fig.path = "figures/"
+  fig.path = "../figures/"
 )
 
 # Pour éviter cette difficulté, les données et fonctions nécessaires sont
@@ -172,10 +173,6 @@ Des analyses élémentaires ponctuelles ont été réalisées par spectrométrie
 
 ### Environnement de calcul
 L'ensemble des traitements et analyses statistiques ont été réalisés avec `r R.version$version.string` [@rcoreteam2018] et des packages complémentaires suivants : `akima` `r packageVersion("akima")` [@akima2016],`compositions` `r packageVersion("compositions")` [@vandenboogaart2018], `cowplot` `r packageVersion("cowplot")` [@wilke2019], `dplyr` `r packageVersion("dplyr")` [@wickham2019], `FactoMineR` `r packageVersion("FactoMineR")` [@le2008], `ggdendro` `r packageVersion("ggdendro")` [@devries2016], `ggplot2` `r packageVersion("ggplot2")` [@wickham2016], `ggrepel` `r packageVersion("ggrepel")` [@slowikowski2018], `ggtern` `r packageVersion("ggtern")` [@hamilton2018], `khroma` `r packageVersion("khroma")` [@frerebeau2019], `magrittr` `r packageVersion("magrittr")` [@bache2014], `MASS` `r packageVersion("MASS")` [@venables2002], `robCompositions` `r packageVersion("robCompositions")` [@templ2011], `tidyr` `r packageVersion("tidyr")` [@wickham2019a].
-
-```{r session}
-utils::sessionInfo()
-```
 
 Le code R utilisé est intégralement disponible en ligne à l'adresse <https://github.com/nfrerebeau/archeosciences2019> et permet de reproduire l'ensemble des résultats présentés ci-après.
 
@@ -792,4 +789,19 @@ La présente étude a reçu un soutien financier de l'État géré par l'Agence 
 
 Les auteurs tiennent à remercier Alexis Gorgues (UMR 5607 Institut Ausonius) et José Antonio Benavente (Consorcio Patrimonio Ibérico de Aragón) pour l'accès au matériel archéologique, ainsi que Valérie Merle (UMR 5138 ArAr) qui a réalisé l'ensemble des analyses WDXRF.
 
+<!-- La ligne suivante insere un saut de page  -->
+\newpage
+
 # Bibliographie
+<!-- La ligne suivante permet de faire apparaitre la bibliographie ici dans le format de sortie MS Word ou HTML, plutôt qu'à la fin du document (cela ne fonctionne pas pour le format PDF):  -->
+<div id="refs"></div>
+
+\newpage
+
+### Colophon
+
+Généré le `r Sys.time()` avec l'environnement de calcul et les dépendances suivants: 
+
+```{r colophon, cache = FALSE}
+utils::sessionInfo()
+```
