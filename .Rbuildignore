@@ -1,8 +1,12 @@
 ^LICENSE\.md$
+^CONDUCT\.md$
+^CONTRIBUTING\.md$
 ^README\.Rmd$
+^PACKAGES\.R$
+^README-.*\.png$
 ^doc$
 ^archeosciences2019\.Rproj$
-^\.Rproj\.user$
 ^packrat/
 ^analysis/
+^\.Rproj\.user$
 ^\.Rprofile$
