@@ -25,8 +25,7 @@ script:
     # build and install custom library with custom functions
   - Rscript -e "install.packages('devtools')"
   - Rscript -e "devtools::install()"
-    # render the main mansucript document into HTML/Word/PDF as specified in the Rmd
-    # you may need to edit the path and file name to point to the Rmd file to render
+    # render the main mansucript document into HTML/Word/PDF
   - R -e "rmarkdown::render('analysis/paper/paper.Rmd')"
 
 # be more tolerant :)

@@ -2,21 +2,22 @@ Package: archeosciences2019
 Title: Reproduction of Frerebeau, N., Ben Amara, A. and Cantin, N. (2019)
 Version: 1.1
 Date: 2019-09-06
-Authors@R: c(person("Nicolas", "Frerebeau",
-                    email = "nicolas.frerebeau@u-bordeaux-montaigne.fr",
-                    role = c("aut", "cre"),
-                    comment = c(ORCID = "https://orcid.org/0000-0001-5759-4944")),
-             person("Ayed", "Ben Amara",
-                    email = "ayed.ben-amara@u-bordeaux-montaigne.fr",
-                    role = c("aut")),
-             person("Nadia", "Cantin",
-                    email = "nadia.cantin@u-bordeaux-montaigne.fr",
-                    role = c("aut"))
-            )
+Authors@R:
+    c(person("Nicolas", "Frerebeau",
+            email = "nicolas.frerebeau@u-bordeaux-montaigne.fr",
+            role = c("aut", "cre"),
+            comment = c(ORCID = "https://orcid.org/0000-0001-5759-4944")),
+     person("Ayed", "Ben Amara",
+            email = "ayed.ben-amara@u-bordeaux-montaigne.fr",
+            role = c("aut")),
+     person("Nadia", "Cantin",
+            email = "nadia.cantin@u-bordeaux-montaigne.fr",
+            role = c("aut"))
+    )
 Maintainer: Nicolas Frerebeau <nicolas.frerebeau@u-bordeaux-montaigne.fr>
 Description: Research compendium of Frerebeau, N., Ben Amara, A. and Cantin, N. 
-    (2019) [in french]. The compendium contains all data, code, and text 
-    associated with this paper.
+    (2019) <doi:xxx> [in french]. The compendium contains all data, code, and 
+    text associated with this paper.
 URL: http://github.com/nfrerebeau/archeosciences2019
 BugReports: http://github.com/nfrerebeau/archeosciences2019/issues
 Depends: R (>= 3.6.0)
