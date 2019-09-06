@@ -26,7 +26,8 @@ script:
   - Rscript -e "install.packages('devtools')"
   - Rscript -e "devtools::install()"
     # render the main mansucript document into HTML/Word/PDF
-  - R -e "rmarkdown::render('analysis/paper/paper.Rmd')"
+  - Rscript -e "rmarkdown::render('analysis/paper/paper.Rmd')"
+  - Rscript -e "devtools::uninstall()"
 
 # be more tolerant :)
 warnings_are_errors: false
