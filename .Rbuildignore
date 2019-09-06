@@ -10,3 +10,4 @@
 ^analysis/
 ^\.Rproj\.user$
 ^\.Rprofile$
+^Dockerfile$
