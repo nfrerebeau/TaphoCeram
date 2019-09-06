@@ -8,12 +8,12 @@ citEntry(entry       = "Manual",
                                    as.person("Ayed Ben Amara"),
                                    as.person("Nadia Cantin")),
          year        = "2019",
-         doi         = "XXX",
+         doi         = "10.5281/zenodo.2613512",
 
          textVersion =
            paste("Frerebeau, N., Ben Amara, A. et Cantin, N. (2019).
                  Compendium of R code and data for 'Le cru et le cuit :
                  processus post-dépôt et altérations différentielles des
                  matériaux céramiques'. Accessed ", Sys.Date(), ". Online at
-                 <https://doi.org/xxx/xxx>", sep = "")
+                 <https://doi.org/10.5281/zenodo.2613512>", sep = "")
 )
