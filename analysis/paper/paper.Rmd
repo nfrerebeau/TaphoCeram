@@ -33,7 +33,7 @@ header-includes:
    - \usepackage{amsmath}
    - \usepackage{amssymb}
 bibliography: references.bib
-csl: archeosciences.csl
+csl: "../templates/archeosciences.csl"
 editor_options: 
   chunk_output_type: console
 ---
@@ -60,13 +60,13 @@ knitr::opts_chunk$set(
 
 # Pour éviter cette difficulté, les données et fonctions nécessaires sont
 # importées au moment du rendu du document :
-load(file = "../data/corpus.rda") # Import des données
+load(file = "../../data/corpus.rda") # Import des données
 sourceDir <- function(path, ...) {
   for (nm in list.files(path, pattern = "[.][RrSsQq]$")) {
     source(file.path(path, nm), ...) # Import des fonctions
   }
 }
-sourceDir("../R")
+sourceDir("../../R")
 
 # Remarque : le compendium est conçu comme un package R, une alternative aux 
 # deux imports précédents est d'utiliser `devtools`.
@@ -356,7 +356,7 @@ knitr::kable(
 )
 
 # Ecrire le tableau dans un fichier csv
-utils::write.table(T_corpus, file = "tables/variation_matrix.csv",
+utils::write.table(T_corpus, file = "../tables/variation_matrix.csv",
                    sep = ";", dec = ",", col.names = NA, row.names = TRUE,
                    fileEncoding = "UTF-8")
 ```
@@ -433,7 +433,7 @@ knitr::kable(
 )
 
 # Ecrire le tableau dans un fichier csv
-utils::write.table(T_resume, file = "tables/variation_matrix_summary.csv",
+utils::write.table(T_resume, file = "../tables/variation_matrix_summary.csv",
                    sep = ";", dec = ",", col.names = NA, row.names = TRUE,
                    fileEncoding = "UTF-8")
 ```
@@ -537,7 +537,7 @@ knitr::kable(
             et des céramiques des US 15205, 15227 et 15312).")
 
 # Ecrire le tableau dans un fichier csv
-utils::write.table(acp2_contrib, file = "tables/pca_contributions.csv",
+utils::write.table(acp2_contrib, file = "../tables/pca_contributions.csv",
                    sep = ";", dec = ",", col.names = NA, row.names = TRUE,
                    fileEncoding = "UTF-8")
 ```
@@ -566,7 +566,7 @@ knitr::kable(
 )
 
 # Ecrire le tableau dans un fichier csv
-utils::write.table(anova_ilr, file = "tables/manova_summary.csv",
+utils::write.table(anova_ilr, file = "../tables/manova_summary.csv",
                    sep = ";", dec = ",", col.names = NA, row.names = TRUE,
                    fileEncoding = "UTF-8")
 ```
@@ -579,7 +579,7 @@ Des cinq hypothèses initiales pouvant expliquer une variation de composition é
 Les anomalies liées aux éléments alcalins et alcalino-terreux sont bien documentées et sont, dans la plupart des cas, associées à des processus post-dépôt de dissolution et cristallisation (voir, entre autres, sur la fixation des alcalino-terreux : @picon1985, @picon1991, @buxedaigarrigos1999, @golitko2012 ; sur la fixation du césium : @buxedaigarrigos2001). Au sein du matériel étudié, des cristallisations secondaires dans les pores des matrices céramiques ont pu être mises en évidence (fig. \@ref(fig:cristal)) : il s'agit de carbonates de calcium (calcite) et de sulfates de baryum (barytine).
 
 ```{r cristal, echo=FALSE, fig.cap="cristallisations secondaires dans les pores des matrices céramiques (microscopie électronique à balayage). (A) Cristaux de carbonates de calcium (calcite). Échantillon BDX15033, image en électrons secondaires. (B) Cristaux de sulfates de baryum (barytine). Échantillon BDX15034, image en électrons rétrodiffusés (les cristaux sont bien mis en évidence par le contraste chimique et apparaissent plus clairs)."}
-knitr::include_graphics("figures/no-plot.png")
+knitr::include_graphics("../figures/no-plot.png")
 ```
 
 La présence de cette dernière catégorie s'accorde particulièrement bien avec l'analyse de nos données élémentaires, qui permet de mettre en évidence une forte proportionnalité entre baryum et strontium. Calcium, strontium et baryum vérifient les règles de substitution de Goldschmidt : tous trois présentent des charges équivalentes, des différences de rayon ionique inférieures à 30 % et des valeurs d'électronégativité similaires. Au sein de nos résultats, ceci est illustré par la proximité de Sr et Ba sur le plan principal de l'ACP (fig. \@ref(fig:acp)) et la faible valeur de l'entrée correspondante dans la matrice de variation ($\tau_{Sr~Ba}$ = `r round(T_corpus["Sr", "Ba"], digits = 2)` ; tab. \@ref(tab:variation)).
@@ -589,11 +589,11 @@ La formation de cristallisations secondaires composées d'éléments alcalino-te
 L'essentiel des sols de la vallée de l'Èbre et, en particulier du Bas-Aragon, appartiennent à la catégorie des calcisols. La mise en place de ces derniers est liée au climat semi-aride de la région, dont le fort contraste saisonnier entraîne la concentration des éléments alcalins et alcalino-terreux dans les sols ainsi que la précipitation de différents sels (fig. \@ref(fig:calcisol) ; @meunier2002). Les circulations d'eau à travers le sol et à travers la porosité des matrices céramiques sont donc à même d'entraîner un enrichissement en calcium, strontium et baryum allochtones et d'expliquer la dispersion de nos résultats. En outre, ceci s'accorde avec la présence d'importantes concrétions de calcite et de gypse à la surface d'une très grande partie des céramiques mises au jour au Mas de Moreno (fig. \@ref(fig:concretions)).
 
 ```{r calcisol, echo=FALSE, fig.cap="profil pédologique typique d'un calcisol à proximité du site du Mas de Moreno (Foz-Calanda, Teruel, Espagne). Au cours de l'hiver, les précipitations entraînent le lessivage des horizons supérieurs. A l'inverse, au cours de l'été, l'importante évapotranspiration entraîne la remontée de sels, qui s'accumulent dans l'horizon B. L'horizon d'accumulation, où se concentrent éléments alcalins et alcalino-terreux entraînant la précipitation de sels, est identifiable par sa teinte blanchâtre."}
-knitr::include_graphics("figures/no-plot.png")
+knitr::include_graphics("../figures/no-plot.png")
 ```
 
 ```{r concretions, echo=FALSE, fig.cap="(A) détail des concrétions formées à la surface des matériaux céramiques fabriqués au sein de l'atelier du Mas de Moreno (photographie en lumière naturelle ; BDX15032) ; (B) lame mince d'une section de l'épaisseur d'un vase, la calcite cristallisée en surface est bien identifiable par ses teintes de biréfringence élevées (photographie en lumière transmise, polarisée et analysée ; BDX15646)."}
-knitr::include_graphics("figures/no-plot.png")
+knitr::include_graphics("../figures/no-plot.png")
 ```
 
 ## Un cas de perturbation différentielle
