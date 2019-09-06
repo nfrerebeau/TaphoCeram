@@ -1,0 +1,35 @@
+{
+    "license": "GPL-3.0",
+    "description": "<p>Research compendium of Frerebeau, N., Ben Amara, A. and Cantin, N. (2019) <doi:xxx> [in french]. The compendium contains all data, code, and text associated with this paper.</p>",
+    "language": "fra",
+    "journal_title": "Arch\u00e9oSciences : revue d'arch\u00e9om\u00e9trie",
+    "notes": "This study received a state financial support managed by the Agence Nationale de la Recherche (France) through the program \"Investissements d'avenir\" (ref. ANR-10-LABX-52).",
+    "keywords": [
+        "archaeology",
+        "archaeometry",
+        "compositional data",
+        "compendium"
+    ],
+    "upload_type": "software",
+    "communities": [
+        {
+            "identifier": "archaeo"
+        }
+    ],
+    "creators": [
+        {
+            "orcid": "0000-0001-5759-4944",
+            "affiliation": "UMR 5060 IRAMAT-CRP2A (CNRS - Universit\u00e9 Bordeaux Montaigne)",
+            "name": "Frerebeau, Nicolas"
+        },
+        {
+            "affiliation": "UMR 5060 IRAMAT-CRP2A (CNRS - Universit\u00e9 Bordeaux Montaigne)",
+            "name": "Ben Amara, Ayed"
+        },
+        {
+            "affiliation": "UMR 5060 IRAMAT-CRP2A (CNRS - Universit\u00e9 Bordeaux Montaigne)",
+            "name": "Cantin, Nadia"
+        }
+    ],
+    "access_right": "open"
+}

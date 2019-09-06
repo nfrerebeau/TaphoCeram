@@ -12,3 +12,4 @@
 ^\.Rprofile$
 ^Dockerfile$
 ^\.travis\.yml$
+^\.zenodo\.json$
