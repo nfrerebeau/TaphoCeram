@@ -14,7 +14,7 @@ RUN . /etc/environment \
   # build this compendium package
   && install2.r packrat \
   && Rscript -e 'packrat::restore()' \
-  && echo '.libPaths("/packrat/lib/x86_64-pc-linux-gnu/3.6.0")' >> /usr/local/lib/R/etc/Rprofile.site
+  && echo '.libPaths("/packrat/lib/x86_64-pc-linux-gnu/3.6.0")' >> /usr/local/lib/R/etc/Rprofile.site \
   #&& R -e "devtools::install('/archeosciences2019', dep=TRUE)" \
   # render the manuscript into a docx, you'll need to edit this if you've
   # customised the location and name of your main Rmd file
