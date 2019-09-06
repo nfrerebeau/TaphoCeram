@@ -14,9 +14,9 @@ RUN . /etc/environment \
 
   # build this compendium package
   && R -e "devtools::install('/archeosciences2019', dep=TRUE)" \
-  
+
   # make project directory writable to save images and other output
   && sudo chmod a+rwx -R archeosciences2019 \
 
   # render the manuscript into a html document
-  && R -e "rmarkdown::render('/archeosciences2019/analysis/paper/paper.Rmd')"
+  && R -e "rmarkdown::render('/archeosciences2019/analysis/paper/paper.Rmd')" \

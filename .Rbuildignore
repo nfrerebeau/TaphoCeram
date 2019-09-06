@@ -18,5 +18,7 @@
 ^\.github$
 ^\.httr-oauth$
 ^packrat/
+^binder/
 ^analysis/
 ^Dockerfile$
+^\.Rprofile$
