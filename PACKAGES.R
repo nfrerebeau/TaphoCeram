@@ -30,13 +30,15 @@ cran_packages <- c(
   "ggplot2",
   "ggrepel",
   "ggtern",
+  "kableExtra",
   "khroma",
   "knitr",
   "magrittr",
   "MASS",
   "rmarkdown",
   "robCompositions",
-  "tidyr"
+  "tidyr",
+  "usethis"
 )
 utils::install.packages(cran_packages)
 
