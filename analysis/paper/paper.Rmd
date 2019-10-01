@@ -5,26 +5,35 @@ date: "Soumis à ArchéoSciences le 26 mars 2019"
 author:
   - Nicolas FREREBEAU:
       email: nicolas.frerebeau@u-bordeaux-montaigne.fr
-      institute: [UofO,UofA]
+      institute: [CRP2A,LMJL]
       correspondence: true
   - Ayed BEN AMARA:
       email: ayed.ben-amara@u-bordeaux-montaigne.fr
-      institute: [UofO]
+      institute: [CRP2A]
       correspondence: false
   - Nadia CANTIN:
       email: nadia.cantin@u-bordeaux-montaigne.fr
-      institute: [UofO]
+      institute: [CRP2A]
       correspondence: false
 institute:
-  - UofO: IRAMAT-CRP2A (UMR 5060 , CNRS - Université Bordeaux Montaigne)
-  - UofA: Laboratoire de Mathématiques Jean Leray (UMR 6629, CNRS - Université de Nantes)
+  - CRP2A: IRAMAT-CRP2A (UMR 5060, CNRS - Université Bordeaux Montaigne)
+  - LMJL: Laboratoire de Mathématiques Jean Leray (UMR 6629, CNRS - Université de Nantes)
 abstract: |
   Dans le cadre d'études de provenance des matériaux céramiques, il est courant de comparer la composition élémentaire de matières premières argileuses avec celle d'artefacts archéologiques. Les problèmes d'altération demeurent cependant peu pris en compte et la nature de l'analogie entre matières argileuses et céramiques archéologiques n'est jamais discutée. La présente étude propose ainsi une première comparaison entre des matériaux céramiques et des tessons non cuits retrouvés dans un même contexte archéologique de la fin de l'Âge du Fer. Nos résultats illustrent l'importance d'un traitement adéquat des données de compositions et l'intérêt des développements méthodologiques dans la suite des travaux de J. Aitchison (1986). Cette approche permet d'identifier, les processus intervenant après l'abandon des artefacts, notamment liés aux mécanismes de pédogenèse, qui n'affectent pas argiles et céramiques de la même façon. L'existence d'une altération différentielle en fonction de la nature des matériaux invite à la prudence quant à l'application stricte du postulat de provenance lorsqu'il s'agit de comparer des matériaux archéologiques et géologiques.
 keywords: |
   altération; argiles; céramiques; données de composition; provenance
 output: 
+  bookdown::pdf_document2:
+    toc: false
+    fig_caption: yes
+    number_sections: true
+    pandoc_args:
+    - --lua-filter=../templates/scholarly-metadata.lua
+    - --lua-filter=../templates/author-info-blocks.lua
+    - --lua-filter=../templates/pagebreak.lua
   bookdown::word_document2:
     fig_caption: yes
+    number_sections: true
     reference_docx: "../templates/template.docx"
     pandoc_args:
     - --lua-filter=../templates/scholarly-metadata.lua
@@ -56,7 +65,8 @@ knitr::opts_chunk$set(
   message = FALSE,
   collapse = FALSE,
   comment = "#>",
-  fig.path = "../figures/"
+  fig.path = "../figures/",
+  fig.align = "center"
 )
 
 # Pour éviter cette difficulté, les données et fonctions nécessaires sont
@@ -79,6 +89,9 @@ library(magrittr)
 # Attention : il existe un conflit entre les packages `ggplot2` et `ggtern`. 
 # Au besoin, commenter la ligne 251 (sans incidence sur les résultats).
 ```
+
+<!-- La ligne suivante insere un saut de page  -->
+\newpage
 
 # Introduction
 Les procédures d'attribution d'une origine[^1] reposent sur l'identification de sources probables, pour lesquelles la variabilité entre deux sources est supérieure à la variabilité interne d'une même source. Ce « postulat de l'origine » [@weigand1977] nécessite donc de reconnaître, pour chaque source, une signature (entendu ici comme signature chimique) qui lui est propre, correspondant à un centre de production, une localité plus ou moins étendue, un gîte de matière première, etc.
@@ -347,10 +360,12 @@ T_corpus <- corpus %>%
 
 # Tableau
 knitr::kable(
-  x = T_corpus, digits = 2, 
+  x = T_corpus, digits = 2, booktabs = TRUE,
   caption = "Matrice de variation des compositions de l'ensemble du corpus 
             (terres crues et céramiques)."
-)
+) %>%
+  kableExtra::kable_styling(latex_options = c("striped", "scale_down")) %>%
+  kableExtra::landscape()
 
 # Ecrire le tableau dans un fichier csv
 utils::write.table(T_corpus, file = "../tables/variation_matrix.csv",
@@ -423,11 +438,12 @@ T_resume <- rbind.data.frame(
 dimnames(T_resume) <- list(c("tau", "var", "corr"), colnames(T_corpus))
 
 knitr::kable(
-  x = t(T_resume), digits = 2, 
+  x = t(T_resume), digits = 2, escape = FALSE, booktabs = TRUE,
   col.names = c("$\\tau_{.j}$", "$1 - v_m / \\tau_{.j}$", "$r_{.j}$"), 
   caption = "Résumé de la matrice de variation des compositions de l'ensemble 
             du corpus (terres crues et céramiques)."
-)
+) %>%
+  kableExtra::kable_styling(latex_options = c("striped"))
 
 # Ecrire le tableau dans un fichier csv
 utils::write.table(T_resume, file = "../tables/variation_matrix_summary.csv",
@@ -452,7 +468,7 @@ ratio_elements <- 1 - round(min(T_resume[2, elements]), digits = 2)
 
 Des rapports $v_t⁄\tau_{.j}$  inférieurs à `r ratio_elements` sont obtenus pour le lanthane, le cérium, l'yttrium, le strontium, le baryum et le cuivre (tab. \@ref(tab:variation-resume)). Ces derniers imposent ainsi une variabilité supérieure à `r (1 - ratio_elements) * 100` % lorsqu'ils sont utilisés comme diviseur de la transformation additive (cette sous-composition représente à elle seule `r round(var_elements, digits = 2) * 100` % de la variance métrique). Au contraire, le reste des variables impose une variabilité inférieure à 50 % (exception faite du nickel).
 
-```{r acp, out.width="100%", fig.width=7, fig.height=7, fig.cap="résultats de l'ACP centrée et non réduite des compositions transformées (CLR). (A) et (B) : projection du nuage des individus et des variables, respectivement, résultant de l'ACP des terres crues et céramiques provenant des US 15205, 15227 et 15312. (C) et (D) projection du nuage des individus et des variables, respectivement, résultant de l'ACP de l'ensemble du corpus. Ellipses de confiance à 95 %. Par commodité, seules les 5 variables dont les contributions cumulées aux axes 1 et 2 sont les plus élevées sont figurées."}
+```{r acp, out.width="100%", fig.width=7, fig.height=7, fig.cap="résultats de l'ACP centrée et non réduite des compositions transformées (CLR). (A) et (B) : projection du nuage des individus et des variables, respectivement, résultant de l'ACP des terres crues et céramiques provenant des US 15205, 15227 et 15312. (C) et (D) projection du nuage des individus et des variables, respectivement, résultant de l'ACP de l'ensemble du corpus. Ellipses de confiance à 95 \\%. Par commodité, seules les 5 variables dont les contributions cumulées aux axes 1 et 2 sont les plus élevées sont figurées."}
 # ACP de l'ensemble du corpus
 acp <- corpus %>%
   dplyr::select(CaO:Cu) %>%
@@ -528,10 +544,12 @@ acp2_contrib <- acp2$var$contrib %>%
   magrittr::set_colnames(paste("PC", 1:ncol(.)))
 
 knitr::kable(
-  x = acp2_contrib, digits = 2, 
+  x = acp2_contrib, digits = 2, booktabs = TRUE,
   caption = "contributions des différentes variables à la construction des axes 
             factoriels (ACP des compositions transformées des tessons non cuits 
-            et des céramiques des US 15205, 15227 et 15312).")
+            et des céramiques des US 15205, 15227 et 15312)."
+) %>%
+  kableExtra::kable_styling(latex_options = c("striped"))
 
 # Ecrire le tableau dans un fichier csv
 utils::write.table(acp2_contrib, file = "../tables/pca_contributions.csv",
@@ -555,12 +573,13 @@ anova_ilr <- corpus %>%
   signif(digits = 3)
 
 knitr::kable(
-  anova_ilr,
+  anova_ilr, booktabs = TRUE,
   col.names = c("ddl", "Somme des carrés", "Moyenne des carrés", "F", "Pr(>F)"),
   caption = "résultat de l'analyse multivariée de la variance (MANOVA) des 
             compositions transformées (ILR) en fonction du matériau (céramiques 
             et tessons non cuits)."
-)
+) %>%
+  kableExtra::kable_styling(latex_options = c("striped"))
 
 # Ecrire le tableau dans un fichier csv
 utils::write.table(anova_ilr, file = "../tables/manova_summary.csv",
@@ -646,8 +665,8 @@ lambda <- summary(manova_ilr, test = "Wilks")$stats[1, "Wilks"]
 # Estime la justesse de la prédiction des données d'entraînement
 confusion <- table(Attendu = lda_ceram$phase, Prédit = lda_ceram$class) %>%
   prop.table(margin = 1) %>%
-  round(digits = 2) %T>%
-  print()
+  round(digits = 2) #%T>%
+  # print()
 ```
 
 L'observation des résultats de l'ACP pourrait, de prime abord, conduire à une autre interprétation qui serait celle d'une modification progressive de la composition élémentaire des produits du Mas de Moreno au cours du temps. Cette proximité pourrait d'autant mieux s'expliquer, que le dépôt des tessons non cuits correspond au moment charnière entre la phase de production strictement ibérique et la restructuration de l'atelier, qui accompagne l'apparition d'éléments de tradition romaine. La variation de composition traduirait alors un changement de sources de matières, au milieu du I<sup>er</sup> siècle av. J.-C. Cette possibilité peut néanmoins être raisonnablement rejetée : les résultats d'une analyse discriminante linéaire (LDA, $\lambda_{Wilks}$ = `r round(lambda, digits = 2)` ; fig. \@ref(fig:lda-plot)) permettent en effet d'attribuer, comme attendu, les terres crues à l'ensemble 2 (à une exception près : BDX14915), sur la base de leurs compositions élémentaires.
@@ -798,7 +817,7 @@ Les auteurs tiennent à remercier Alexis Gorgues (UMR 5607 Institut Ausonius) et
 
 \newpage
 
-### Colophon
+# Colophon
 
 Généré le `r Sys.time()` avec l'environnement de calcul et les dépendances suivants: 
 

@@ -123,7 +123,7 @@ local function create_correspondence_blocks(authors, mark)
   local correspondence = List:new{
     pandoc.Superscript(mark'corresponding_author'),
     pandoc.Space(),
-    pandoc.Str'Correspondence:',
+    pandoc.Str'Correspondance:',
     pandoc.Space()
   }
   local sep = List:new{pandoc.Str',',  pandoc.Space()}
@@ -165,7 +165,7 @@ return {
       -- string for most formats. LaTeX output, however, looks nicer if we
       -- provide a authors as a list.
       meta.author = FORMAT:match 'latex'
-        and pandoc.MetaList(doc.meta.author):map(author_inline_generator(mark))
+        and pandoc.MetaList(List:new(doc.meta.author):map(author_inline_generator(mark)))
         or pandoc.MetaInlines(create_authors_inlines(doc.meta.author, mark))
       -- Institute info is now baked into the affiliations block.
       meta.institute = nil
