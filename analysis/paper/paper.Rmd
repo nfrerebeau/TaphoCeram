@@ -42,6 +42,7 @@ output:
 header-includes:
   - \usepackage{amsmath}
   - \usepackage{amssymb}
+lang: fr
 bibliography: references.bib
 csl: "../templates/archeosciences.csl"
 editor_options: 
@@ -90,7 +91,20 @@ library(magrittr)
 # Au besoin, commenter la ligne 251 (sans incidence sur les résultats).
 ```
 
+```{r graphical-abstract, out.width="4in"}
+knitr::include_graphics("../figures/rayshader.png")
+```
+
 <!-- La ligne suivante insere un saut de page  -->
+\newpage
+
+# Suivi des modifications {-}
+
+| **Version** | **Date**   | **Description**            |
+|------------:|-----------:|:---------------------------|
+| 1.0         | 2019-03-26 | Soumis à _ArchéoSciences_  |
+| 1.1         | 2019-10-15 | Corrections typographiques |
+
 \newpage
 
 # Introduction

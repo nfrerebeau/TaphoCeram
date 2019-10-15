@@ -136,7 +136,7 @@ end
 local function create_authors_inlines(authors, mark)
   local inlines_generator = author_inline_generator(mark)
   local inlines = List:new(authors):map(inlines_generator)
-  local and_str = List:new{pandoc.Space(), pandoc.Str'and', pandoc.Space()}
+  local and_str = List:new{pandoc.Space(), pandoc.Str'et', pandoc.Space()}
 
   local last_author = inlines[#inlines]
   inlines[#inlines] = nil
