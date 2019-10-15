@@ -35,11 +35,6 @@
     "access_right": "open",
     "related_identifiers": [
         {
-            "scheme": "url",
-            "identifier": "https://github.com/nfrerebeau/archeosciences2019/tree/v1.0",
-            "relation": "isSupplementTo"
-        },
-        {
             "scheme": "doi",
             "identifier": "10.5281/zenodo.1414297",
             "relation": "isSupplementedBy",
