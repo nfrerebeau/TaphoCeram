@@ -1,6 +1,6 @@
 {
-    "license": "GPL-3.0",
-    "description": "<p>Research compendium of Frerebeau, N., Ben Amara, A. and Cantin, N. (2019) <doi:xxx> [in french]. The compendium contains all data, code, and text associated with this paper.</p>",
+    "license": "GPL-3.0-only",
+    "description": "<p>Research compendium of Frerebeau, N., Ben Amara, A. and Cantin, N. (2019) [in french]. The compendium contains all data, code, and text associated with this paper.</p>",
     "language": "fra",
     "journal_title": "Arch\u00e9oSciences : revue d'arch\u00e9om\u00e9trie",
     "notes": "This study received a state financial support managed by the Agence Nationale de la Recherche (France) through the program \"Investissements d'avenir\" (ref. ANR-10-LABX-52).",
@@ -16,6 +16,7 @@
             "identifier": "archaeo"
         }
     ],
+    "publication_date": "2019-03-26",
     "creators": [
         {
             "orcid": "0000-0001-5759-4944",
@@ -31,5 +32,29 @@
             "name": "Cantin, Nadia"
         }
     ],
-    "access_right": "open"
+    "access_right": "open",
+    "related_identifiers": [
+        {
+            "scheme": "url",
+            "identifier": "https://github.com/nfrerebeau/archeosciences2019/tree/v1.0",
+            "relation": "isSupplementTo"
+        },
+        {
+            "scheme": "doi",
+            "identifier": "10.5281/zenodo.1414297",
+            "relation": "isSupplementedBy",
+            "resource_type": "dataset"
+        },
+        {
+            "scheme": "doi",
+            "identifier": "10.5281/zenodo.2594968",
+            "relation": "isSupplementedBy",
+            "resource_type": "dataset"
+        },
+        {
+            "scheme": "doi",
+            "identifier": "10.5281/zenodo.2613512",
+            "relation": "isVersionOf"
+        }
+    ]
 }
