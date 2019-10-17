@@ -1,5 +1,13 @@
+#' @details
+#' \tabular{ll}{
+#'  \strong{Package:} \tab archeosciences2019 \cr
+#'  \strong{Type:} \tab Compendium \cr
+#'  \strong{Version:} \tab 1.1 \cr
+#'  \strong{License:} \tab GPL-3 \cr
+#'  \strong{DOI:} \tab \href{https://doi.org/10.5281/zenodo.2613512}{10.5281/zenodo.2613512}
+#' }
 #' @author
-#' \strong{Full list of authors}
+#' \strong{Full list of authors and contributors} (alphabetic order)
 #'
 #' \tabular{ll}{
 #'  Nicolas Frerebeau \tab \emph{UMR 5060 IRAMAT-CRP2A, Université Bordeaux Montaigne, France} \cr

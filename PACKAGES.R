@@ -37,6 +37,7 @@ cran_packages <- c(
   "MASS",
   "rmarkdown",
   "robCompositions",
+  "roxygen2",
   "tidyr",
   "usethis"
 )

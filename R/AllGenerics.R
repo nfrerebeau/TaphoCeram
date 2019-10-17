@@ -1,4 +1,4 @@
-#' @include archeosciences2019.R
+#' @include archeosciences2019-package.R
 NULL
 
 #' Get individuals coordinates

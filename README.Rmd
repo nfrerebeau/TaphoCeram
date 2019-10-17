@@ -35,11 +35,11 @@ Please cite this compendium as:
 
 ## Licenses
 
-**Text and figures:** [CC-BY-NC-SA-4.0](http://creativecommons.org/licenses/by-nc-sa/4.0/).
+**Text and figures:** [CC-BY-SA-4.0](http://creativecommons.org/licenses/by-sa/4.0/).
 
 **Code:** see the [DESCRIPTION](DESCRIPTION) file.
 
-**Datasets:** [CC-BY-NC-SA-4.0](http://creativecommons.org/licenses/by-nc-sa/4.0/).
+**Datasets:** [CC-BY-SA-4.0](http://creativecommons.org/licenses/by-sa/4.0/).
 
 ## Instalation
 
