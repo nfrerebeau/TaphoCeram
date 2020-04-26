@@ -1,7 +1,7 @@
 ---
-title: "Le cru et le cuit : processus post-dépôt et altérations différentielles des matériaux céramiques"
-shorttitle: "Le cru et le cuit"
-date: "Soumis à ArchéoSciences le 26 mars 2019"
+title: "Analyse de données de composition et identification des altérations géochimiques des matériaux céramiques : le cas des productions d'un atelier ibérique (Teruel, Espagne ; II^e^-I^er^ millénaire avant J.-C.)"
+shorttitle: "Analyse de données de composition et identification des altérations géochimiques des matériaux céramiques"
+date: "Soumis à _ArchéoSciences_ le 26 mars 2019"
 author:
   - Nicolas FREREBEAU:
       email: nicolas.frerebeau@u-bordeaux-montaigne.fr
@@ -16,12 +16,12 @@ author:
       institute: [CRP2A]
       correspondence: false
 institute:
-  - CRP2A: IRAMAT-CRP2A (UMR 5060, CNRS - Université Bordeaux Montaigne)
+  - CRP2A: IRAMAT-CRP2A (UMR 5060, CNRS - Université Bordeaux Montaigne). Maison de l\'Archéologie, Université Bordeaux Montaigne, Domaine Universitaire, F-33607 Pessac cedex.
   - LMJL: Laboratoire de Mathématiques Jean Leray (UMR 6629, CNRS - Université de Nantes)
 abstract: |
   Dans le cadre d'études de provenance des matériaux céramiques, il est courant de comparer la composition élémentaire de matières premières argileuses avec celle d'artefacts archéologiques. Les problèmes d'altération demeurent cependant peu pris en compte et la nature de l'analogie entre matières argileuses et céramiques archéologiques n'est jamais discutée. La présente étude propose ainsi une première comparaison entre des matériaux céramiques et des tessons non cuits retrouvés dans un même contexte archéologique de la fin de l'Âge du Fer. Nos résultats illustrent l'importance d'un traitement adéquat des données de compositions et l'intérêt des développements méthodologiques dans la suite des travaux de J. Aitchison (1986). Cette approche permet d'identifier les processus intervenant après l'abandon des artefacts, notamment liés aux mécanismes de pédogenèse, qui n'affectent pas argiles et céramiques de la même façon. L'existence d'une altération différentielle en fonction de la nature des matériaux invite à la prudence quant à l'application stricte du postulat de provenance lorsqu'il s'agit de comparer des matériaux archéologiques et géologiques.
 keywords: |
-  altération; argiles; céramiques; données de composition; provenance
+  altération; argiles; céramiques; données de composition; provenance; taphonomie
 output: 
   bookdown::pdf_document2:
     toc: false
@@ -32,7 +32,7 @@ output:
     - --lua-filter=../templates/author-info-blocks.lua
     - --lua-filter=../templates/pagebreak.lua
   bookdown::word_document2:
-    fig_caption: yes
+    fig_caption: true
     number_sections: true
     reference_docx: "../templates/template.docx"
     pandoc_args:
@@ -61,6 +61,11 @@ knitr::opts_knit$set(
 # Pour utiliser les objets de la session courrante, il faut donc
 # soit passer l'option `cache.lazy = TRUE` dans `knitr::opts_chunk$set`, 
 # soit utiliser `rmarkdown::render()` dans la console.
+
+# Remarque : le compendium est conçu comme un package R, une alternative aux 
+# deux imports précédents est d'utiliser `devtools`.
+devtools::load_all()
+
 knitr::opts_chunk$set(
   echo = FALSE,
   message = FALSE,
@@ -69,20 +74,6 @@ knitr::opts_chunk$set(
   fig.path = "../figures/",
   fig.align = "center"
 )
-
-# Pour éviter cette difficulté, les données et fonctions nécessaires sont
-# importées au moment du rendu du document :
-load(file = "../../data/corpus.rda") # Import des données
-sourceDir <- function(path, ...) {
-  for (nm in list.files(path, pattern = "[.][RrSsQq]$")) {
-    source(file.path(path, nm), ...) # Import des fonctions
-  }
-}
-sourceDir("../../R")
-
-# Remarque : le compendium est conçu comme un package R, une alternative aux 
-# deux imports précédents est d'utiliser `devtools`.
-# devtools::load_all()
 
 # Import des packages nécessaires
 library(magrittr)
@@ -100,19 +91,18 @@ knitr::include_graphics("../figures/rayshader.png")
 
 # Suivi des modifications {-}
 
-| **Version** | **Date**   | **Description**            |
-|------------:|-----------:|:---------------------------|
-| 1.0         | 2019-03-26 | Soumis à _ArchéoSciences_  |
-| 1.1         | 2019-10-15 | Corrections typographiques |
+| **Version** | **Date**   | **Description**            | **DOI** |
+|------------:|-----------:|:---------------------------|:--------|
+| 1.0         | 2019-03-26 | Soumis à _ArchéoSciences_  | [10.5281/zenodo.2613513](https://doi.org/10.5281/zenodo.2613513) |
+| 1.1         | 2019-10-15 | Corrections typographiques | [10.5281/zenodo.3490469](https://doi.org/10.5281/zenodo.3490469) |
+| 1.2         | 2020-04-25 | Corrections après relecture |
 
 \newpage
 
 # Introduction
 Les procédures d'attribution d'une origine[^1] reposent sur l'identification de sources probables, pour lesquelles la variabilité entre deux sources est supérieure à la variabilité interne d'une même source. Ce « postulat de l'origine » [@weigand1977] nécessite donc de reconnaître, pour chaque source, une signature (entendu ici comme signature chimique) qui lui est propre, correspondant à un centre de production, une localité plus ou moins étendue, un gîte de matière première, etc.
 
-Les problèmes d'altération des matières céramiques ont été documentés à partir de la fin des années 1970 [@picon1976; @picon1985; @picon1991; @buxedaigarrigos2001; @buxedaigarrigos2002; @schwedt2004; @schwedt2006; @rathossi2010; @secco2011; @golitko2012] mais demeurent, nous semble-t-il, relativement peu pris en compte dans les études de provenance.
-
-D'une part, la réponse apportée repose sur une approche construite à partir d'un nombre fini de possibilités. La principale implication d'une telle procédure est d'ordre méthodologique : elle impose de raisonner par la négative, c'est-à-dire d'exclure les sources les moins probables. Dans le cas contraire, le risque est en effet de construire des faux positifs, en attribuant l'origine des produits à la source qui demeure la plus probable au sein d'une liste préalablement établie. Or, la vraie source peut ne pas être connue ou avoir disparu, car entièrement exploitée voire détruite par l'étalement urbain ou des activités agricoles plus récentes. Il apparaît ainsi bien moins dommageable d'exclure à tort une source (faux négatif) que de raisonner sur une mauvaise attribution. D'autre part, la résolution de la réponse apportée repose sur la mesure de la variabilité intra-source. Or, pour un individu donné, la variance totale associée à la teneur en chaque composé peut être décomposée comme suit [@beier1994] :
+La résolution de la réponse apportée dans le cas des études de provenance repose sur la mesure de la variabilité intra-source. Or, pour un individu donné, la variance totale associée à la teneur en chaque composé peut être décomposée comme suit [@beier1994] :
 
 $$ \text{var}_T = \text{var}_N + \text{var}_E + \text{var}_A $$
 
@@ -124,26 +114,24 @@ Où $\text{var}_T$ est la variance totale, $\text{var}_N$ est la variance nature
 4. Conséquences de processus intervenant après l'enfouissement (taphonomie) ;
 5. Combinaison de deux ou plusieurs des hypothèses précédentes.
 
-Comment, dès lors, inférer des situations passées si les objets étudiés ont été affectés par des centaines voire des milliers d'années d'une existence souterraine ? 
+Le cas spécifique des problèmes d'altération des matières céramiques sont documentés depuis la fin des années 1970 [voir entre autres : @picon1976; @echallier1984; @picon1985; @picon1991; @buxedaigarrigos2001; @buxedaigarrigos2002; @schwedt2004; @schwedt2006; @rathossi2010; @secco2011; @golitko2012] mais demeurent, nous semble-t-il, relativement peu pris en compte dans les études de provenance. Ceci à plus forte raison lorsque les compositions élémentaires de matériaux céramiques sont comparées à celles de matières argileuses en vue d'identifier des sources de matières premières.
 
-L'objectif de la présente étude est ainsi de proposer une première comparaison entre des matériaux céramiques et des tessons non cuits retrouvés dans un même contexte archéologique de la fin de l'Âge du Fer. Aussi, nous attacherons-nous ici à explorer, d'une part, l'éventualité d'une perturbation des compositions des matières céramiques et, d'autre part, la possibilité d'altérations différentielles selon les matériaux. Pour ce faire, nous montrerons l'importance du traitement des données de compositions et l'intérêt des développements méthodologiques dans la suite des travaux de J. @aitchison1986.
+La présente étude a ainsi pour objectif de comparer les compositions entre des matériaux céramiques et des tessons non cuits retrouvés dans un même contexte archéologique de la fin de l'Âge du Fer. Il s'agit ici de discuter la nature et l'usage de l'analogie entre des céramiques archéologiques et des matières premières argileuses dans la perspective d'une étude de provenance.
 
-Par extension, il s'agit de discuter la nature de l'analogie entre des céramiques archéologiques et des matières premières argileuses dans la perspective d'une étude de provenance.
+Aussi, nous attacherons-nous à explorer, d'une part, l'éventualité d'une perturbation des compositions des matières céramiques et, d'autre part, la possibilité d'altérations différentielles selon les matériaux. Pour ce faire, nous montrerons l'importance du traitement des données de compositions et l'intérêt des développements méthodologiques dans la suite des travaux de J. Aitchison -@aitchison1986.
 
 ## L'atelier de potiers du Mas de Moreno
-L'atelier de potiers du Mas de Moreno se situe dans la province de Teruel (Aragon, Espagne), sur le territoire de la commune de Foz-Calanda. Bordé au nord par une série de petites collines, l'atelier exploite la topographie naturelle du fond de la vallée du Guadalopillo, affluent secondaire de l'Èbre. À ce jour, l'exploration du site a permis la mise au jour de près d'une dizaine de structures de cuisson.
+L'atelier de potiers du Mas de Moreno se situe dans la province de Teruel (Aragon, Espagne), sur le territoire de la commune de Foz-Calanda (fig. \@ref(fig:carte)). Bordé au nord par une série de petites collines, l'atelier exploite la topographie naturelle du fond de la vallée du Guadalopillo, affluent secondaire de l'Èbre. L'exploration du site entre 2005 et 2015 par l'équipe dirigée par A. Gorgues (UMR 5607 Institut Ausonius) et José Antonio Benavente Serrano (Taller de Arqueología de Alcañiz) a permis la mise au jour de près d'une dizaine de structures de cuisson [@gorgues2007].
 
-L'activité de l'atelier est établie entre la fin de l'Ibérique moyen (vers 225-200 avant J.-C.) et celle de l'Ibérique récent (vers 40-30). D'entre tous, le four n°1 est probablement le plus ancien, bien qu'il ait également fonctionné simultanément aux fours n°3, 4 et 5, et dont l'arrêt et la destruction interviennent vers 50-40 avant J.-C [@gorgues2012]. L'apparition d'un four à amphores (four n°2) aux dimensions nettement supérieures à celles des structures précédentes, ainsi que de formes d'amphores de tradition romaine (Tarraconaise 1) et d'une épigraphie latine, marquent une profonde restructuration de l'atelier au milieu du I er siècle. Malgré cela, l'activité de l'atelier s'interrompt au cours de la décennie suivante, conséquence probable de la réorganisation du territoire sous l'influence romaine et de l'éloignement des voies commerciales [@gorgues2012].
+```{r carte, echo=FALSE, fig.cap="Localisation de l'atelier du Mas de Moreno (Foz-Calanda, Teruel, Espagne). (A) Topographie de la vallée du Guadalopillo, données LiDAR © Instituto Geográfico National de España ; (B) extrait de la carte géologique de l'Espagne au 1:50 000, feuille n°494 (pour une légende détaillée, voir IGME, 1974) © Instituto Geológico y Minero de España."}
+knitr::include_graphics("../figures/no-plot.png")
+```
 
-## Éléments de géologie aragonaise
-La géographie physique de l'Espagne apparaît, pour une très large part de ses caractéristiques, comme la conséquence d'événements tectoniques liés à l'orogenèse alpine (Mésozoïque-Cénozoïque). Les Pyrénées et la Cordillère Bétique correspondent aux marges nord et sud de la plaque continentale Ibérique et matérialisent les deux épisodes tectoniques que sont, au nord, la subduction partielle sous la plaque Eurasiatique et, au sud, la collision avec la plaque Africaine [@casas-sainz2009]. Ces mouvements amorcés au Crétacé supérieur ont entraîné d'importantes déformations intraplaque (mise en place du système Ibérique) et ont conduit à la formation de bassins avant-pays bordant les principales chaînes de montagnes.
+L'activité de l'atelier est établie entre la fin de l'Ibérique moyen (vers 225-200 avant J.-C.) et celle de l'Ibérique récent (vers 40-30). D'entre tous, le four n° 1 est probablement le plus ancien, bien qu'il ait également fonctionné simultanément aux fours n° 3, 4 et 5, et dont l'arrêt et la destruction interviennent vers 50-40 avant J.-C. [@gorgues2012]. L'apparition d'un four à amphores (four n° 2) aux dimensions nettement supérieures à celles des structures précédentes, ainsi que de formes d'amphores de tradition romaine (Tarraconaise 1) et d'une épigraphie latine, marquent une profonde restructuration de l'atelier au milieu du I^er^ siècle. Malgré cela, l'activité de l'atelier s'interrompt au cours de la décennie suivante, conséquence probable de la réorganisation du territoire sous l'influence romaine et de l'éloignement des voies commerciales [@gorgues2012].
 
-La mise en place et l'évolution des grands bassins sédimentaires de la péninsule sont tributaires de ces mouvements tectoniques. Les bassins internes du Duero (encadré par la Cordillère Cantabrique et le Système Central) et du Tage (entre le Système Central et les Monts de Tolède), individualisés par la poussée des Pyrénées et du Système Central, au début de l'Éocène, et dont l'ouverture sur l'Atlantique n'intervient qu'au cours du Miocène. Ils se distinguent ainsi du bassin du Guadalquivir (entre la Sierra Morena et le Système Bétique) ouvert sur l'océan dès sa mise en place [@casas-sainz2009]. Le bassin de l'Èbre, bordé au nord par les Pyrénées et au sud par le Système Ibérique, est affecté par les modifications successives de la topographie au cours du Tertiaire. Celui-ci voit en effet son régime un temps affecté par l'absence d'exutoire sur la Méditerranée [@gibbons2002; @garcia-castellanos2003].
+Les productions de l'atelier correspondent à la céramique ibérique dite à « pâte claire ». Il s'agit de la catégorie la plus typique de la céramique ibérique, avec cette particularité qu'à la régionalisation des répertoires stylistiques, répond la forte homogénéité technique des procédés de fabrication. Cette appellation désigne une production façonnée au tour, présentant des pâtes compactes, sans élément visible à l'œil nu et réputées cuites à haute température en atmosphère oxydante (@tarradell1980 ; équivalent à la céramique cuite en atmosphère oxydante de la classe A de la typologie proposée par @mata1992).
 
-La cordillère ibérique constitue un massif d'extension NO-SE, bordant la dépression de l'Èbre par le sud. Ce massif est constitué de séries Mésozoïque-Cénozoïque, reposant sur un socle pré-Cambrien-Paléozoïque affleurant localement [@higuerasarnal1981]. La couverture sédimentaire Secondaire-Tertiaire forme une avancée septentrionale de la cordillère ibérique vers la dépression de l'Èbre et constitue l'essentiel des massifs de la Sierra bas aragonaise qui nous intéressent ici.
-
-Régulièrement immergé au Mésozoïque, le secteur oriental de la cordillère, auquel appartient le territoire de la commune de Foz-Calanda, présente une sédimentation quasi continue, alternant faciès marins et continentaux. Le cycle des transgressions-régressions depuis le Trias est matérialisé au sein du massif par l'alternance de formations calcaires et de dépôts argileux. Au Tertiaire inférieur, la mer se retire définitivement, tandis que débute une sédimentation exclusivement continentale et que s'amorce l'orogenèse alpine, conférant à la cordillère sa configuration actuelle [@higuerasarnal1981].
-
+## Environnement géologique (Bas-Aragon)
 L'atelier du Mas de Moreno repose sur les dépôts fluviatiles quaternaires du fond de la vallée du Guadalopillo, couvrant les dépôts néogènes affleurant abondamment dans le secteur [@igme1974]. Cette formation continentale alterne séries marneuses et conglomérats, et correspond à l'accumulation des produits de l'érosion postorogénique des reliefs alentours plus anciens [@igme1974; @higuerasarnal1981]. Le synclinal du Mas de Moreno, d'extension NNO-SSE, est ainsi bordé par des massifs calcaires et dolomitiques mésozoïques. Les dépôts argileux disponibles dans le Bas Aragon peuvent être résumés comme suit, en fonction de la stratigraphie [@igme1972].
 
 Argiles quaternaires :
@@ -166,23 +154,34 @@ Argiles triasiques :
 
 # Méthodes
 ## Échantillonnage
-L'échantillonnage a été conduit de telle sorte que chaque prélèvement corresponde à un unique artefact. Les prélèvements ont ainsi été réalisés autant que possible sur des fragments de bords, après les éventuels remontages. De plus, une attention particulière a été portée au risque de pollution liée au traitement du matériel, ceci en écartant systématiquement les tessons ayant été recollés ou ayant subi un quelconque traitement chimique.
+Au sein des productions de l'atelier, l'échantillonnage de 99 céramiques a été réalisé dans une double perspective : diachronique et synchronique. En effet, une première synthèse archéologique de l'atelier a mis en évidence trois phases d'activité qui se succèdent, marquées par les réorganisations successives de l'espace productif et l'apparition d'éléments de tradition romaine [@gorgues2007; @gorgues2012]. Les unités stratigraphiques sélectionnées (regroupées en trois ensembles) pour l'échantillonnage couvrent ainsi l'intégralité de la période d'activité de l'atelier (fig. \@ref(fig:typo) ; tab. \@ref(tab:nmi) ; @sacilotto2011).
 
-Au sein des productions de l'atelier, l'échantillonnage a été réalisé dans une double perspective : diachronique et synchronique. Le découpage chronologique adopté fait suite à une première synthèse archéologique de l'évolution de l'atelier, au cours de laquelle trois phases d'activité, marquées par les réorganisations successives de l'espace productif et l'apparition d'éléments de tradition romaine, se succèdent [@gorgues2007; @gorgues2012]. Les unités stratigraphiques sélectionnées et leur regroupement en trois ensembles permet d'apprécier l'intégralité de la période d'activité de l'atelier. Enfin, l'échantillonnage a été conduit de telle sorte que les trois ensembles ne présentent pas de différence significative en termes d'effectifs pour chaque catégorie d'artefact.
+```{r typo, echo=FALSE, fig.cap="Synthèse chronologique de l'échantillonnage au sein des productions du Mas de Moreno (Foz-Calanda, Teruel, Espagne). L'étendue des trois ensembles étudiés correspond aux deux grandes phases de fonctionnement de l'atelier : une production pleinement ibérique à laquelle succède, au milieu du premier siècle avant J.-C., l'apparition d'éléments de tradition romaine."}
+knitr::include_graphics("../figures/no-plot.png")
+```
 
-Ensemble 1 (II^e^ siècle av. J.-C.)
-: 30 prélèvements ont été réalisés dans une unité (US 12212) parmi les plus anciennes actuellement identifiées sur le site. Cette couche de dépotoir est associée à l'activité du four n° 1 et est datée postérieurement à 150 av. J.-C.
+```{r nmi}
+nmi %>%
+  knitr::kable(
+    digits = 2, booktabs = TRUE,
+    caption = "Résumé de l'échantillonnage par unité stratigraphique. Décomptes d'après Sacilotto (2011) et Frerebeau \\& Sacilotto (2017). US : unité stratigraphique ; NR : nombre de fragments ; NMI : nombre minimum d'individus ; N : effectif de l'échantillonnage. * : étude en cours."
+  ) %>%
+  kableExtra::kable_styling(
+    latex_options = c("scale_down")
+  ) %>%
+  kableExtra::collapse_rows(columns = 1:3, valign = "middle")
+```
 
-Ensemble 2 (première moitié du I^er^ siècle av. J.-C.)
-: Deux séries de 15 prélèvements ont été réalisés dans deux couches associées au four n° 5 : la première constituait le remplissage de l'alandier, tandis que la seconde en comblait le laboratoire (US 15205 et 15227, respectivement).
+Enfin, bien que la céramique ibérique dite « à pâte claire » présente une grande homogénéité technique, indépendamment du type d'objet (supra), l'échantillonnage a été conduit de telle sorte que tous les types d'objets produits dans l'atelier soient intégrés à l'étude (céramique fine et commune, peinte ou non, vases de stockage et pesons). Les formes non ibériques apparaissant à la fin de la période d'activité de l'atelier ont également été intégrées à l'étude : ces dernières ne font en effet pas l'objet d'une production distincte au sein de l'atelier, mais sont conjointes aux éléments ibériques qui persistent.
 
-Ensemble 3 (50-30 av. J.-C.)
-: 30 prélèvements ont été réalisés dans les unités stratigraphiques 13138, 13169 et 21041. Les deux premières unités sont associées au four n° 2, dont l'activité est vraisemblablement attestée vers 50 av. J.-C. L'US 21041 correspond quant à elle au comblement détritique d'une fosse recoupant le four n° 6.
+Plusieurs tessons et fragments d'artefacts en terre crue ont également été découverts au cours des fouilles de l'atelier [@frerebeau2017]. Parmi ceux-ci, 15 fragments ont été étudiés ici, en complément du corpus de céramiques. Tous appartiennent à l'ensemble 2. L'essentiel de ces éléments est constitué de morceaux de panse, néanmoins, quelques fragments de pesons ainsi que des tessons façonnés de bords, de fonds et d'anses ont été retrouvés. Ces tessons ont permis d'identifier plusieurs formes : petites coupes (dont deux présentent un décor peint), *kalathoi* et jarres de stockage.
 
-Plusieurs tessons et fragments d'artefacts en terre crue ont également été découverts au cours des fouilles de l'atelier [@frerebeau2017]. Parmi ceux-ci, 23 fragments provenant du remplissage de l'alandier (US 15205) et du laboratoire (US 15302 et US 15312) du four n° 5 ont été étudiés. Tous appartiennent à la première moitié du I^er^ siècle av. J.-C. L'essentiel de ces éléments est constitué de morceaux de panse, néanmoins, quelques fragments de pesons ainsi que des tessons façonnés de bords, de fonds et d'anses ont été retrouvés. Ces tessons ont permis d'identifier plusieurs formes : petites coupes (dont deux présentent un décor peint), *kalathoi* et jarres de stockage.
+Le lecteur trouvera l'attribution stratigraphique et typologique de chaque échantillon dans @frerebeau2015 [-@frerebeau2015a].
+
+L'échantillonnage a été conduit de telle sorte que chaque prélèvement corresponde à un unique artefact. Les prélèvements ont ainsi été réalisés autant que possible sur des fragments de bords, après les éventuels remontages (à l'exception des tessons non cuits pour lesquels les remontages étaient impossibles). De plus, une attention particulière a été portée au risque de pollution liée au traitement du matériel après sa mise au jour, en écartant systématiquement les tessons ayant été recollés ou ayant subi un quelconque traitement chimique.
 
 ## Méthodologie
-### Fluorescence de rayons X en dispersion de longueur d'onde (WDXRF)
+### Fluorescence de rayons X en dispersion de longueur d'onde
 La composition élémentaire des échantillons a été obtenue par spectrométrie de fluorescence de rayons X en dispersion de longueur d'onde. L'ensemble des analyses WDXRF a été réalisé au Laboratoire Archéologie et Archéométrie (UMR 5138).
 
 Après un nettoyage mécanique de la surface des échantillons, ces derniers ont été chauffés à 950 °C pendant une heure dans un four électrique --- permettant de les décarbonater, de les déshydrater, d'éliminer la matière organique et de calculer la perte au feu (% massique) --- avant d'être broyés dans un mortier en carbure de tungstène. Enfin, 0,8 g de poudre ainsi obtenus ont été mélangés avec 3,2 g de fondant Spectroflux 110 (Johnson Matthey ; 33,5 % de métaborate et 66,5 % de tétraborate de lithium) et portés à fusion dans des creusets en or-platine avec une machine à fusion autofluxer (Breitländer).
@@ -193,18 +192,32 @@ Vingt-et-un éléments ont ainsi été dosés et les résultats sont exprimés e
 
 Les données brutes sont disponibles dans @frerebeau2015a et @frerebeau2015.
 
-### Microscopie électronique à balayage (SEM-EDS)
-L'acquisition des images en microscopie électronique à balayage (SEM) a été réalisée avec un équipement à pression variable JSM 6460LV (JEOL) sur des cassures fraîches, après dépôt d'une couche nanométrique de carbone. Les observations ont été réalisées sous vide poussé (supérieur à 10^-5^ mbar), avec une tension d'accélération de 30 kV.
+### Microscopie électronique à balayage
+L'acquisition des images en microscopie électronique à balayage (MEB) a été réalisée avec un équipement à pression variable JSM 6460LV (JEOL) sur des cassures fraîches, après dépôt d'une couche nanométrique de carbone. Les observations ont été réalisées sous vide poussé (supérieur à 10^-5^ mbar), avec une tension d'accélération de 30 kV.
 
-Des analyses élémentaires ponctuelles ont été réalisées par spectrométrie de rayons X en dispersion d'énergie (EDS ; spectromètre Oxford INCA 300) couplée à l'imagerie par microscopie électronique à balayage. Pour l'ensemble des spectres EDS le temps mort lors de l'acquisition est de l'ordre de 35 %, pour un nombre de coups moyen par spectre supérieur à 10^6^. Les compositions ont été calculées à partir de standards de la société Oxford Instruments constitués de métaux, de composés de synthèse et de minéraux naturels.
+Des analyses élémentaires ponctuelles ont été réalisées par spectrométrie de rayons X en dispersion d'énergie (spectromètre Oxford INCA 300) couplée à l'imagerie par microscopie électronique à balayage. Pour l'ensemble des spectres le temps mort lors de l'acquisition est de l'ordre de 35 %, pour un nombre de coups moyen par spectre supérieur à 10^6^. Les compositions ont été calculées à partir de standards de la société Oxford Instruments constitués de métaux, de composés de synthèse et de minéraux naturels.
 
 ### Environnement de calcul
-L'ensemble des traitements et analyses statistiques ont été réalisés avec `r R.version$version.string` [@rcoreteam2018] et des packages complémentaires suivants : `akima` `r packageVersion("akima")` [@akima2016],`compositions` `r packageVersion("compositions")` [@vandenboogaart2018], `cowplot` `r packageVersion("cowplot")` [@wilke2019], `dplyr` `r packageVersion("dplyr")` [@wickham2019], `FactoMineR` `r packageVersion("FactoMineR")` [@le2008], `ggdendro` `r packageVersion("ggdendro")` [@devries2016], `ggplot2` `r packageVersion("ggplot2")` [@wickham2016], `ggrepel` `r packageVersion("ggrepel")` [@slowikowski2018], `ggtern` `r packageVersion("ggtern")` [@hamilton2018], `khroma` `r packageVersion("khroma")` [@frerebeau2019], `magrittr` `r packageVersion("magrittr")` [@bache2014], `MASS` `r packageVersion("MASS")` [@venables2002], `robCompositions` `r packageVersion("robCompositions")` [@templ2011], `tidyr` `r packageVersion("tidyr")` [@wickham2019a].
+L'ensemble des traitements et analyses statistiques ont été réalisés avec `r R.version$version.string` [@rcoreteam2020] et des packages complémentaires suivants : 
+`akima` `r packageVersion("akima")` [@akima2016], 
+`compositions` `r packageVersion("compositions")` [@vandenboogaart2018], 
+`cowplot` `r packageVersion("cowplot")` [@wilke2019], 
+`dplyr` `r packageVersion("dplyr")` [@wickham2019], 
+`FactoMineR` `r packageVersion("FactoMineR")` [@le2008], 
+`ggdendro` `r packageVersion("ggdendro")` [@devries2016], 
+`ggplot2` `r packageVersion("ggplot2")` [@wickham2016], 
+`ggrepel` `r packageVersion("ggrepel")` [@slowikowski2018], 
+`ggtern` `r packageVersion("ggtern")` [@hamilton2018], 
+`khroma` `r packageVersion("khroma")` [@frerebeau2019], 
+`magrittr` `r packageVersion("magrittr")` [@bache2014], 
+`MASS` `r packageVersion("MASS")` [@venables2002], 
+`robCompositions` `r packageVersion("robCompositions")` [@templ2011],
+`tidyr` `r packageVersion("tidyr")` [@wickham2019a].
 
-Le code R utilisé est intégralement disponible en ligne à l'adresse <https://github.com/nfrerebeau/archeosciences2019> et permet de reproduire l'ensemble des résultats présentés ci-après.
+Le code R utilisé est intégralement disponible dans @frerebeau2020 (en ligne à l'adresse <https://github.com/nfrerebeau/TaphoCeram>) et permet de répliquer l'ensemble des résultats présentés ci-après.
 
 ## Transformation des données de composition
-Les données quantitatives obtenues par WDXRF et exploitées dans la présente étude ont été préalablement transformées en vue de leur analyse. Cette étape est rendue nécessaire par la nature de ces données dites de composition, qui décrivent les parties d'un tout comme mutuellement exclusives et exhaustives [@aitchison1986; @pawlowsky-glahn2011]. L'approche courante lorsque l'on cherche à explorer les relations d'interdépendance dans le cas d'un jeu de données multivarié est de s'attacher à la covariance et à la corrélation entre variables. Or, dans le cas des données de composition, la covariance entre deux composés est contrainte par la somme constante et dépend des autres composés également présents dans le jeu de données. De plus, la matrice de covariance est également singulière.
+Les données quantitatives obtenues par fluorescence de rayons X et exploitées dans la présente étude ont été préalablement transformées en vue de leur analyse. Cette étape est rendue nécessaire par la nature de ces données dites de composition, qui décrivent les parties d'un tout comme mutuellement exclusives et exhaustives [@aitchison1986; @pawlowsky-glahn2011]. L'approche courante lorsque l'on cherche à explorer les relations d'interdépendance dans le cas d'un jeu de données multivarié est de s'attacher à la covariance et à la corrélation entre variables. Or, dans le cas des données de composition, la covariance entre deux composés est contrainte par la somme constante et dépend des autres composés également présents dans le jeu de données. De plus, la matrice de covariance est également singulière.
 
 Une composition $x$ est en effet définie comme un vecteur de longueur $D$ dont tous les composants sont des réels strictement positifs (teneurs) qui portent une information relative \@ref(eq:composition). La somme $k$ des teneurs est constante, généralement égale à 1 ou 100, selon que l'on considère des parts d'une unité ou des pourcentages :
 
@@ -213,9 +226,7 @@ x = [x_1, x_2, \cdots, x_D] ~\forall x_i \in \mathbb{R}^{+*}, \sum_{i=1}^{D} x_i
 (\#eq:composition)
 \end{equation}
 
-L'influence de la somme constante au sein de la matrice de covariance se traduit en termes de corrélation : s'agissant de compositions, le coefficient de corrélation n'est pas libre de prendre une valeur dans l'intervalle $[-1;1]$ mais correspond à une valeur arbitraire [@aitchison1986]. Ce problème se manifeste particulièrement lorsque les teneurs brutes de deux composés sont représentées au sein d'un diagramme de dispersion. Il n'y a en effet aucune garantie que les projections à partir du jeu de données initial ou d'une sous-composition conduisent à des observations similaires. Bien que ce type de représentation soit particulièrement courant, il est impossible de faire confiance aux tendances ainsi mises en évidence (pour une discussion du problème, voir @aitchison2005, @cortes2009).
-
-Si bien que dans le cas de données dites de composition, ces contraintes ont des implications (y compris dans le cas d'analyses univariées ; @aitchison2000; @filzmoser2009) et la plupart des méthodes dédiées aux statistiques multivariées, dont la mise en œuvre repose sur l'exploitation des matrices de variance-covariance, sont inapplicables. Le recours à ces dernières nécessite donc une transformation préalable des données, permettant de casser la contrainte de somme constante introduite par la fermeture des données et de travailler dans un espace adapté.
+L'influence de la somme constante au sein de la matrice de covariance se traduit en termes de corrélation si bien que la plupart des méthodes dédiées aux statistiques multivariées, dont la mise en œuvre repose sur l'exploitation des matrices de variance-covariance, sont inapplicables. Le recours à ces dernières nécessite donc une transformation préalable des données, permettant de casser la contrainte de somme constante introduite par la fermeture des données et de travailler dans un espace adapté.
 
 @aitchison1986 a proposé deux transformations, dites additive (*additive log-ratio*, $\text{alr}$) et centrée (*centered log-ratio*, $\text{clr}$), définies par les équations \@ref(eq:alr) et \@ref(eq:clr).
 
@@ -245,12 +256,58 @@ z_i = \sqrt{\frac{i}{i + 2}} \ln \left[ \frac{g(x_1),\cdots, g(x_i)}{x_{i+1}} \r
 
 Les transformations $\text{alr}$  et $\text{ilr}$  correspondent à un changement de base : il s'agit des coordonnées de la composition transformée selon une base oblique ($\text{alr}$) ou orthonormale ($\text{ilr}$).
 
+Dans le cadre des données de compositions, un indicateur de la tendance centrale est donnée par la moyenne $\bar{x}$ de la composition \@ref(eq:moyenne), soit le vecteur fermé des moyennes géométriques de chaque composant [@aitchison1989] : 
+
+\begin{equation}
+\bar{x} = \frac{k}{\sum_{i=1}^D x_i} \left[ \exp \left( \frac{1}{N} \sum_{i=1}^{N} \ln x_i\right) \right]
+(\#eq:moyenne)
+\end{equation}
+
+Une mesure de la dispersion est donnée par la variance métrique $v_m$ \@ref(eq:variance), entendue comme la moyenne des distances au centre du jeu de données [@hron2011 ; @pawlowsky-glahn2001] :
+
+\begin{equation}
+v_m = \frac{1}{N - 1} \sum_{i=1}^{N} d_A^2 (x_i - \bar{x})
+(\#eq:variance)
+\end{equation}
+
+où $d_A$ est la distance d'Aitchison :
+
+\begin{equation}
+d_A (x, y) = \sqrt{\frac{1}{D} \sum_{i = 1}^{D} \sum_{j > i}^{D} \left( \ln \frac{x_i}{x_j} - \ln \frac{y_i}{y_j} \right)^2}
+(\#eq:distance)
+\end{equation}
+
+La variance métrique ne renseigne cependant pas sur la codépendance entre composés. La nature particulière des données de composition interdisant le recours à la corrélation ou la covariance, la matrice de variation $T$ \@ref(eq:variation) et la matrice de log-covariance $\Sigma$ \@ref(eq:covariance) peuvent être utilisées [@aitchison1986].
+
+\begin{equation}
+T = \left[ \tau_{ij} \right] = \left[ \text{var}\left( \ln \frac{x_i}{x_j} \right) \right] \forall i,j \in [1;D]
+(\#eq:variation)
+\end{equation}
+
+\begin{equation}
+\Sigma = \left[ \sigma_{ij} \right] = \left[ \text{cov}\left( \ln \frac{x_i}{x_D}, \ln \frac{x_j}{x_D} \right) \right] \forall i,j \in [1;D-1]
+(\#eq:covariance)
+\end{equation}
+
+La matrice de variation est symétrique : $\ln(a/b) = - \ln(b/a)$ et $\text{var}(c) = \text{var}(-c)$.
+Une faible valeur de $\tau_{ij} = \tau_{ji}$ implique ainsi une faible variance de $\ln(x_i/x_j)$, c'est-à-dire une bonne proportionnalité en entre les deux composés : $x_i \propto x_j$ [@vandenboogaart2013]. Pour faciliter l'interprétation de la matrice de variation, la transformation suivante peut être assimilée à un coefficient de corrélation entre les deux composés [@aitchison1997] : $\rho_{ij} = \exp(-\tau_{ij}^2 / 2)$.
+
+La matrice de variation peut être complétée de trois indicateurs supplémentaires, permettant de résumer l'information contenue dans la matrice, décrits par @buxedaigarrigos1999 :
+
+* La somme $\tau_{.j}$ de chacune des colonnes de la matrice $T$.
+* Le rapport entre la variance métrique et la somme de chaque colonne de la matrice de variation $v_m / \tau_{.j}$. La variabilité imposée à $\Sigma$ par le composant $x_j$ utilisé comme dénominateur de la transformation $\text{alr}$ est donné par $1 - v_m / \tau_{.j}$.
+* Le coefficient de corrélation $r_{.j}$ entre chaque colonne de la matrice de variation et le vecteur des sommes de chaque colonne la matrice $\tau_{.j}$. Ce dernier correspond à une mesure de la distorsion liée aux relations entre les différents composants et celui utilisé comme dénominateur de la transformation $\text{alr}$.
+
 # Résultats et discussion
 ## Une première approche des données
 
-Les matériaux étudiés, céramiques et tessons non cuits, appartiennent à la catégorie des matériaux calcaires (fig. \@ref(fig:cas) ; @noll1991). Dans le détail, certaines teneurs présentent des distributions fortement asymétriques et des écarts importants en fonction de la nature du matériau. 
+Les matériaux étudiés, céramiques et tessons non cuits, présentent une forte homogénéité technique, indépendamment des types d'objets considérés. Tous présentent une texture fine, sans dégraissant visible à l'œil nu. La répartition des grains dans la matrice est homogène et les pâtes apparaissent relativement compactes.
 
-```{r cas, out.width="50%", fig.width=5, fig.height=5, fig.cap="compositions élémentaires des terres crues et des céramiques dans le système ternaire (CaO+MgO)-Al2O3-SiO2. Les trois domaines illustrés correspondent à la classification proposée par @noll1991 (de bas en haut et de gauche à droite : céramiques très calciques, céramiques calciques, peu calciques ; Di : diopside ; An : anorthite ; Gh : ghélénite ; Mul : mullite ; Qtz : quartz)."}
+La composition minéralogique de la fraction non plastique, telle qu'identifiée par la diffraction de rayons X, est similaire en qualité pour l'ensemble des fragments étudiés. Celle-ci est constituée d'un assemblage de quartz, calcite et dolomite, de feldspaths (calciques et potassiques) et d'hématite, auxquels s'ajoute la présence fortement suspectée d'oxyde de titane [@frerebeau2017].
+
+L'ensemble des échantillons appartiennent à la catégorie des matériaux riches en calcium\@ref(fig:cas) ; @noll1991). Dans le détail, certaines teneurs présentent des distributions fortement asymétriques et des écarts importants en fonction de la nature du matériau. 
+
+```{r cas, out.width="50%", fig.width=5, fig.height=5, fig.cap="compositions élémentaires des terres crues et des céramiques dans le système ternaire (CaO+MgO)-Al2O3-SiO2. Les trois domaines illustrés correspondent à la classification proposée par Noll (1991 ; de bas en haut et de gauche à droite : céramiques très calciques, céramiques calciques, peu calciques ; Di : diopside ; An : anorthite ; Gh : ghélénite ; Mul : mullite ; Qtz : quartz)."}
 
 # Construire les domaines au sein du ternaire
 points <- rbind.data.frame(
@@ -291,51 +348,15 @@ ggtern::ggtern(mapping = ggplot2::aes(x = CaO+MgO, y = SiO2, z = Al2O3)) +
   ggplot2::geom_label(data = points, size = 3,
                       label.r = ggplot2::unit(0.50, "lines"),
                       mapping = ggplot2::aes(label = min)) + 
-  ggtern::Llab("CaO\n+MgO", "% mass.") +
-  ggtern::Rlab(expression("Al"[2]*"O"[3]), "% mass.") +
-  ggtern::Tlab(expression("SiO"[2]), "% mass.") +
-  ggtern::theme_bw() + # FIXME : conflit probable avec 'ggplot2'
+  ggtern::Llab("CaO\n+MgO", "% poids d'oxyde") +
+  ggtern::Rlab(expression("Al"[2]*"O"[3]), "% poids d'oxyde") +
+  ggtern::Tlab(expression("SiO"[2]), "% poids d'oxyde") +
+  ggplot2::theme_bw() + # FIXME : conflit probable avec 'ggplot2'
   ggtern::theme_showarrows() +
-  ggtern::theme(legend.position = "bottom",
+  ggplot2::theme(legend.position = "bottom",
                 legend.title = ggplot2::element_blank()) +
   khroma::scale_color_vibrant()
 ```
-
-Dans le cadre des données de compositions, un indicateur de la tendance centrale est donnée par la moyenne $\bar{x}$ de la composition \@ref(eq:moyenne), soit le vecteur fermé des moyennes géométriques de chaque composant [@aitchison1989] : 
-
-\begin{equation}
-\bar{x} = \frac{k}{\sum_{i=1}^D x_i} \left[ \exp \left( \frac{1}{N} \sum_{i=1}^{N} \ln x_i\right) \right]
-(\#eq:moyenne)
-\end{equation}
-
-Une mesure de la dispersion est donnée par la variance métrique $v_m$ \@ref(eq:variance), entendue comme la moyenne des distances au centre du jeu de données [@hron2011 ; @pawlowsky-glahn2001] :
-
-\begin{equation}
-v_m = \frac{1}{N - 1} \sum_{i=1}^{N} d_A^2 (x_i - \bar{x})
-(\#eq:variance)
-\end{equation}
-
-où $d_A$ est la distance d'Aitchison :
-
-\begin{equation}
-d_A (x, y) = \sqrt{\frac{1}{D} \sum_{i = 1}^{D} \sum_{j > i}^{D} \left( \ln \frac{x_i}{x_j} - \ln \frac{y_i}{y_j} \right)^2}
-(\#eq:distance)
-\end{equation}
-
-La variance métrique ne renseigne cependant pas sur la codépendance entre composés. La nature particulière des données de composition interdisant le recours à la corrélation ou la covariance, la matrice de variation $T$ \@ref(eq:variation) et la matrice de log-covariance $\Sigma$ \@ref(eq:covariance) peuvent être utilisées [@aitchison1986].
-
-\begin{equation}
-T = \left[ \tau_{ij} \right] = \left[ \text{var}\left( \ln \frac{x_i}{x_j} \right) \right] \forall i,j \in [1;D]
-(\#eq:variation)
-\end{equation}
-
-\begin{equation}
-\Sigma = \left[ \sigma_{ij} \right] = \left[ \text{cov}\left( \ln \frac{x_i}{x_D}, \ln \frac{x_j}{x_D} \right) \right] \forall i,j \in [1;D-1]
-(\#eq:covariance)
-\end{equation}
-
-La matrice de variation est symétrique : $\ln(a/b) = - \ln(b/a)$ et $\text{var}(c) = \text{var}(-c)$.
-Une faible valeur de $\tau_{ij} = \tau_{ji}$ implique ainsi une faible variance de $\ln(x_i/x_j)$, c'est-à-dire une bonne proportionnalité en entre les deux composés : $x_i \propto x_j$ [@vandenboogaart2013]. Pour faciliter l'interprétation de la matrice de variation, la transformation suivante peut être assimilée à un coefficient de corrélation entre les deux composés [@aitchison1997] : $\rho_{ij} = \exp(-\tau_{ij}^2 / 2)$.
 
 ```{r variance-metrique}
 # Calcul de la variance métrique...
@@ -370,7 +391,7 @@ Au sein de l'ensemble du corpus étudié (céramiques et terres crues), la varia
 # Matrice de variation de l'ensemble du corpus
 T_corpus <- corpus %>%
   dplyr::select(CaO:Cu) %>%
-  robCompositions::variation(robust = FALSE)
+  robCompositions::variation(method = "Pivot")
 
 # Tableau
 knitr::kable(
@@ -426,12 +447,6 @@ cowplot::plot_grid(
 )
 ```
 
-La matrice de variation peut être complétée de trois indicateurs supplémentaires, décrits par @buxedaigarrigos1999 :
-
-* La somme $\tau_{.j}$ de chacune des colonnes de la matrice $T$.
-* Le rapport entre la variance métrique et la somme de chaque colonne de la matrice de variation $v_m / \tau_{.j}$. La variabilité imposée à $\Sigma$ par le composant $x_j$ utilisé comme dénominateur de la transformation $\text{alr}$ est donné par $1 - v_m / \tau_{.j}$.
-* Le coefficient de corrélation $r_{.j}$ entre chaque colonne de la matrice de variation et le vecteur des sommes de chaque colonne la matrice $\tau_{.j}$. Ce dernier correspond à une mesure de la distorsion liée aux relations entre les différents composants et celui utilisé comme dénominateur de la transformation $\text{alr}$.
-
 ```{r variation-resume}
 # Nombre d'éléments quantifiés
 D <- dplyr::select(corpus, CaO:Cu) %>% ncol()
@@ -454,15 +469,16 @@ dimnames(T_resume) <- list(c("tau", "var", "corr"), colnames(T_corpus))
 knitr::kable(
   x = t(T_resume), digits = 2, escape = FALSE, booktabs = TRUE,
   col.names = c("$\\tau_{.j}$", "$1 - v_m / \\tau_{.j}$", "$r_{.j}$"), 
-  caption = "Résumé de la matrice de variation des compositions de l'ensemble 
-            du corpus (terres crues et céramiques)."
+  caption = "Résumé de la matrice de variation des compositions de l'ensemble du corpus (terres crues et céramiques)."
 ) %>%
   kableExtra::kable_styling(latex_options = c("striped"))
 
 # Ecrire le tableau dans un fichier csv
-utils::write.table(T_resume, file = "../tables/variation_matrix_summary.csv",
-                   sep = ";", dec = ",", col.names = NA, row.names = TRUE,
-                   fileEncoding = "UTF-8")
+utils::write.table(
+  T_resume, file = "../tables/variation_matrix_summary.csv",
+  sep = ";", dec = ",", col.names = NA, row.names = TRUE,
+  fileEncoding = "UTF-8"
+)
 ```
 
 ```{r variance-elements}
@@ -550,7 +566,7 @@ cowplot::plot_grid(
 
 ```
 
-Deux analyses en composantes principales (ACP) centrées et non réduites ont été réalisées sur les données de composition transformées ($\text{clr}$). Dans un premier cas, seules les céramiques et terres crues provenant des mêmes unités stratigraphiques (15205, 15227 et 15312) ont été prises en compte (fig. \@ref(fig:acp)A et \@ref(fig:acp)B), puis l'ensemble du corpus a été analysée (fig. \@ref(fig:acp)C et \@ref(fig:acp)D). En première approximation --- les deux premiers axes n'expliquant que `r round(sum(acp2$eig[1:2, 2]))` % et `r round(sum(acp$eig[1:2, 2]))` % de la variance totale, respectivement --- il apparaît que la dispersion des individus sur le plan principal est majoritairement le fait des éléments précédemment identifiés : le strontium, le baryum, le lanthane, le cuivre, le lanthane et le cérium (tab. \@ref(tab:acp-contrib)).
+Deux analyses en composantes principales (ACP) centrées et non réduites ont été réalisées sur les données de composition transformées ($\text{clr}$). Dans un premier cas, seules les céramiques et terres crues provenant des mêmes unités stratigraphiques (15205, 15227 et 15312) ont été prises en compte (fig. \@ref(fig:acp)A et \@ref(fig:acp)B), puis l'ensemble du corpus a été analysée (fig. \@ref(fig:acp)C et \@ref(fig:acp)D). En première approximation --- les deux premiers axes n'expliquant que `r round(sum(acp2$eig[1, 2]))` % et `r round(sum(acp$eig[2, 2]))` % de la variance totale, respectivement --- il apparaît que la dispersion des individus sur le plan principal est majoritairement le fait des éléments précédemment identifiés : le strontium, le baryum, le lanthane, le cuivre, le lanthane et le cérium (tab. \@ref(tab:acp-contrib)).
 
 ```{r acp-contrib}
 acp2_contrib <- acp2$var$contrib %>%
@@ -559,16 +575,16 @@ acp2_contrib <- acp2$var$contrib %>%
 
 knitr::kable(
   x = acp2_contrib, digits = 2, booktabs = TRUE,
-  caption = "contributions des différentes variables à la construction des axes 
-            factoriels (ACP des compositions transformées des tessons non cuits 
-            et des céramiques des US 15205, 15227 et 15312)."
+  caption = "contributions des différentes variables à la construction des axes factoriels (ACP des compositions transformées des tessons non cuits et des céramiques des US 15205, 15227 et 15312)."
 ) %>%
   kableExtra::kable_styling(latex_options = c("striped"))
 
 # Ecrire le tableau dans un fichier csv
-utils::write.table(acp2_contrib, file = "../tables/pca_contributions.csv",
-                   sep = ";", dec = ",", col.names = NA, row.names = TRUE,
-                   fileEncoding = "UTF-8")
+utils::write.table(
+  acp2_contrib, file = "../tables/pca_contributions.csv",
+  sep = ";", dec = ",", col.names = NA, row.names = TRUE,
+  fileEncoding = "UTF-8"
+)
 ```
 
 ```{r anova}
@@ -589,24 +605,24 @@ anova_ilr <- corpus %>%
 knitr::kable(
   anova_ilr, booktabs = TRUE,
   col.names = c("ddl", "Somme des carrés", "Moyenne des carrés", "F", "Pr(>F)"),
-  caption = "résultat de l'analyse multivariée de la variance (MANOVA) des 
-            compositions transformées (ILR) en fonction du matériau (céramiques 
-            et tessons non cuits)."
+  caption = "résultat de l'analyse multivariée de la variance (MANOVA) des compositions transformées (ILR) en fonction du matériau (céramiques et tessons non cuits)."
 ) %>%
   kableExtra::kable_styling(latex_options = c("striped"))
 
 # Ecrire le tableau dans un fichier csv
-utils::write.table(anova_ilr, file = "../tables/manova_summary.csv",
-                   sep = ";", dec = ",", col.names = NA, row.names = TRUE,
-                   fileEncoding = "UTF-8")
+utils::write.table(
+  anova_ilr, file = "../tables/manova_summary.csv",
+  sep = ";", dec = ",", col.names = NA, row.names = TRUE,
+  fileEncoding = "UTF-8"
+)
 ```
 
 Une analyse multivariée de la variance (MANOVA) des compositions transformées ($\text{ilr}$) en fonction de la nature du matériau permet de confirmer ces observations. Au risque $\alpha = 0.05$ (tab. \@ref(tab:anova)), la fluctuation d'échantillonnage ne suffit pas à expliquer les différences observées.
 
-Des cinq hypothèses initiales pouvant expliquer une variation de composition élémentaire, la troisième peut d'ores et déjà être écartée : le matériel du Mas de Moreno étant issu d'un contexte productif, postuler qu'il n'a pas été utilisé, sinon pas suffisamment pour être affecté, ne semble pas déraisonnable. Reste donc à explorer d'éventuels changements dans la préparation des pâtes ou de sources de matières premières (ou de mélanges de différentes sources), ainsi que la question des processus taphonomiques. Ce dernier point étant un préalable à l'étude des compositions, seul celui-ci fait l'objet des développements suivants.
+Des cinq hypothèses initiales pouvant expliquer une variation de composition élémentaire, celle relative à l'utilisation des objets peut d'ores et déjà être écartée, le matériel du Mas de Moreno étant issu d'un contexte productif. Reste donc à explorer d'éventuels changements dans la préparation des pâtes ou de sources de matières premières, ainsi que la question des processus taphonomiques. Ce dernier point étant un préalable à l'étude des compositions, seul celui-ci fait l'objet des développements suivants.
 
 ## Impact du milieu d'enfouissement
-Les anomalies liées aux éléments alcalins et alcalino-terreux sont bien documentées et sont, dans la plupart des cas, associées à des processus post-dépôt de dissolution et cristallisation (voir, entre autres, sur la fixation des alcalino-terreux : @picon1985, @picon1991, @buxedaigarrigos1999, @golitko2012 ; sur la fixation du césium : @buxedaigarrigos2001). Au sein du matériel étudié, des cristallisations secondaires dans les pores des matrices céramiques ont pu être mises en évidence (fig. \@ref(fig:cristal)) : il s'agit de carbonates de calcium (calcite) et de sulfates de baryum (barytine).
+Les anomalies liées aux éléments alcalins et alcalino-terreux sont bien documentées et sont, dans la plupart des cas, associées à des processus post-dépôt de dissolution et cristallisation (voir, entre autres, sur la fixation des alcalino-terreux : @picon1985, @picon1991, @buxedaigarrigos1999, @golitko2012 ; sur la fixation du césium : @buxedaigarrigos2001). Au sein du matériel étudié, des cristallisations secondaires dans les pores des matrices céramiques ont pu être mises en évidence (fig. \@ref(fig:cristal)) : il s'agit de carbonates de calcium (probablement de la calcite) et de sulfates de baryum (dont la barytine est la forme la plus vraisemblable).
 
 ```{r cristal, echo=FALSE, fig.cap="cristallisations secondaires dans les pores des matrices céramiques (microscopie électronique à balayage). (A) Cristaux de carbonates de calcium (calcite). Échantillon BDX15033, image en électrons secondaires. (B) Cristaux de sulfates de baryum (barytine). Échantillon BDX15034, image en électrons rétrodiffusés (les cristaux sont bien mis en évidence par le contraste chimique et apparaissent plus clairs)."}
 knitr::include_graphics("../figures/no-plot.png")
@@ -629,7 +645,7 @@ knitr::include_graphics("../figures/no-plot.png")
 ## Un cas de perturbation différentielle
 La présence de cristallisations secondaires est en grande partie contrôlée par la capillarité, qui permet la pénétration des solutions saturées dans la matrice céramique, et dépend notamment de la porosité et de la taille des pores.
 
-Les résultats de l'ACP suggèrent que les tessons de terre crue et de céramique forment deux ensembles distincts (fig. \@ref(fig:acp)). La distinction entre les deux ensembles est surtout le fait des alcalino-terreux (strontium et baryum) et du cuivre. Alors que l'on s'attendait à voir les terres crues présenter un net enrichissement en ces éléments, du fait de leur capillarité plus importante, on constate cependant l'inverse : ce sont les terres cuites qui présentent un tel enrichissement. La différence de matière (terre crue *vs* terre cuite) semble alors la mieux à même d'expliquer l'existence de deux ensembles.
+Les résultats de l'ACP suggèrent que les tessons de terre crue et de céramique forment deux ensembles distincts (fig. \@ref(fig:acp)). La distinction entre les deux ensembles est surtout le fait des alcalino-terreux (strontium et baryum) et du cuivre. Les terres cuites présentent un enrichissement par rapport aux terres crues. La différence de matière (terre crue *vs* terre cuite) semble alors la mieux à même d'expliquer l'existence de deux ensembles.
 
 Cependant, le passage de la terre crue à la céramique au cours de la cuisson ne semble pas avoir de conséquence en termes de composition élémentaire autre qu'une perte en éléments volatils [@cogswell1996; @schwedt2007] --- éléments non exploités dans la présente étude. La différence constatée ne s'explique donc pas par cette étape de transformation.
 
@@ -683,7 +699,7 @@ confusion <- table(Attendu = lda_ceram$phase, Prédit = lda_ceram$class) %>%
   # print()
 ```
 
-L'observation des résultats de l'ACP pourrait, de prime abord, conduire à une autre interprétation qui serait celle d'une modification progressive de la composition élémentaire des produits du Mas de Moreno au cours du temps. Cette proximité pourrait d'autant mieux s'expliquer, que le dépôt des tessons non cuits correspond au moment charnière entre la phase de production strictement ibérique et la restructuration de l'atelier, qui accompagne l'apparition d'éléments de tradition romaine. La variation de composition traduirait alors un changement de sources de matières, au milieu du premier siècle av. J.-C. Cette possibilité peut néanmoins être raisonnablement rejetée : les résultats d'une analyse discriminante linéaire (LDA, $\lambda_{Wilks}$ = `r round(lambda, digits = 2)` ; fig. \@ref(fig:lda-plot)) permettent en effet d'attribuer, comme attendu, les terres crues à l'ensemble 2 (à une exception près : BDX14915), sur la base de leurs compositions élémentaires.
+L'observation des résultats de l'ACP pourrait, de prime abord, conduire à une autre interprétation qui serait celle d'une modification progressive de la composition élémentaire des produits du Mas de Moreno au cours du temps. Cette proximité pourrait d'autant mieux s'expliquer, que le dépôt des tessons non cuits correspond au moment charnière entre la phase de production strictement ibérique et la restructuration de l'atelier, qui accompagne l'apparition d'éléments de tradition romaine. La variation de composition traduirait alors un changement de sources de matières, au milieu du premier siècle av. J.-C. Cette possibilité peut néanmoins être raisonnablement rejetée : les résultats d'une analyse discriminante linéaire (LDA, $\lambda_{Wilks}$ = `r round(lambda, digits = 2)` ; fig. \@ref(fig:lda-plot)) permettent en effet d'attribuer, comme attendu, les terres crues à l'ensemble 2 (à une exception près : BDX14915), sur la base de leurs compositions élémentaires et en utilisant les compositions des céramiques comme données d'entrainement.
 
 ```{r lda-plot, out.width="50%", fig.width=5, fig.height=5, fig.cap="résultats de l'analyse discriminante linéaire (LDA) des compositions de l'ensemble du corpus après transformation (ILR). Le modèle a été construit à partir du corpus des céramiques afin de prédire l'appartenance des tessons non cuits à un ensemble chronologique sur la base de leurs compositions. Une approximation des frontières de décision de la LDA est également figurée, elle a été réalisée à l'aide d'une recherche par grille."}
 # Approximation des frontières de décision
@@ -762,17 +778,16 @@ Cette différence peut être mise en relation avec le comportement des minéraux
 Enfin, l'adsorption des ions cuivre par les minéraux argileux ou leur combinaison avec des complexes humiques constituent les principales formes d'occurrence de cet élément dans les sols [@sillanpaa1979]. Ainsi, le cuivre se trouve-t-il piégé dans les matrices céramiques au cours de la cuisson, tandis qu'il est susceptible d'être lessivé et remobilisé dans les terres crues, ce qui permettrait d'expliquer les moindres teneurs constatées au sein de celles-ci.
 
 ## Le cas des terres rares
-Des nodules de phosphates de terres rares légères, de quelques micromètres de diamètre, ont pu être identifiés par SEM-EDS. La monazite $\mathrm{(Ce,La)PO_4}$ est un minéral accessoire, relativement commun dans les roches ignées granitiques ou métamorphiques dérivées de sédiments argileux [@overstreet1967]. En contexte sédimentaire, ce minéral est d'origine détritique, et est d'autant mieux préservé que les phosphates présentent une faible solubilité dans des conditions alcalines (typiquement celles des calcisols ; @tunesi1999 ; @chesworth2008). La monazite incorpore les terres rares légères, au détriment des principaux silicates et présente souvent une importante zonation chimique au sein d'un même minéral [@zhu1999; @corrie2008]. Ceci s'accorde, d'une part, avec la forte proportionnalité constatée dans nos données entre les teneurs en lanthane et en cérium (l'entrée correspondante dans la matrice de variation est parmi les plus faibles : $\tau_{La~Ce}$ = `r round(T_corpus["La", "Ce"], digits = 2)` ; tab. \@ref(tab:variation)) et, d'autre part, avec la variance importante attachée à ces éléments. La dispersion liée au lanthane et au cérium est ainsi très vraisemblablement la conséquence d'une variabilité liée à l'échantillonnage et à la distribution des grains de monazite au sein des individus étudiés. En conséquence, les teneurs en terres rares apparaissent fortement affectées par la présence d'un seul minéral accessoire, dont la composition peut varier d'un grain à l'autre [@buxedaigarrigos2003].
+Des nodules de phosphates de terres rares légères, de quelques micromètres de diamètre, ont pu être identifiés par microscopie électronique. La monazite $\mathrm{(Ce,La)PO_4}$ est un minéral accessoire, relativement commun dans les roches ignées granitiques ou métamorphiques dérivées de sédiments argileux [@overstreet1967]. En contexte sédimentaire, ce minéral est d'origine détritique, et est d'autant mieux préservé que les phosphates présentent une faible solubilité dans des conditions alcalines (typiquement celles des calcisols ; @tunesi1999 ; @chesworth2008). La monazite incorpore les terres rares légères, au détriment des principaux silicates et présente souvent une importante zonation chimique au sein d'un même minéral [@zhu1999; @corrie2008]. Ceci s'accorde, d'une part, avec la forte proportionnalité constatée dans nos données entre les teneurs en lanthane et en cérium (l'entrée correspondante dans la matrice de variation est parmi les plus faibles : $\tau_{La~Ce}$ = `r round(T_corpus["La", "Ce"], digits = 2)` ; tab. \@ref(tab:variation)) et, d'autre part, avec la variance importante attachée à ces éléments. La dispersion liée au lanthane et au cérium est ainsi très vraisemblablement la conséquence d'une variabilité liée à la distribution des grains de monazite au sein des individus étudiés. En conséquence, les teneurs en terres rares apparaissent fortement affectées par la présence d'un seul minéral accessoire, dont la composition peut varier d'un grain à l'autre [@buxedaigarrigos2003].
 
-Demeure enfin le cas de l'yttrium. Elément lithophile, ce dernier est peu mobile (fig. 4) et présent sous forme de xenotime $\mathrm{YPO_4}$ ou, par le jeu des substitutions, au sein de minéraux accessoires résistant à la météorisation (zircon ou monazite par exemple). Malheureusement, ni les observations, ni les données acquises ne permettent d'expliquer plus avant la variabilité constatée.
+Demeure enfin le cas de l'yttrium. Elément lithophile, ce dernier est peu mobile et présent sous forme de xenotime $\mathrm{YPO_4}$ ou, par le jeu des substitutions, au sein de minéraux accessoires résistant à la météorisation (zircon ou monazite par exemple). Malheureusement, ni les observations, ni les données acquises ne permettent d'expliquer plus avant la variabilité constatée.
 
 ## Synthèse
-L'utilisation des rapports de logarithmes pour l'analyse de données compositionnelles (LRA pour *log-ratio analysis*) issues d'objets archéologiques a été largement débattue au cours des années 2000, pour finalement aboutir à une situation de statu quo (pour une revue de cette question, voir @aitchison2002, @baxter2006 et les références citées par ces auteurs). Il est ainsi avancé par certains auteurs que l'utilisation de données standardisées plutôt que de rapports de logarithmes permet d'obtenir dans certaines situations des résultats plus facilement interprétables. Ceci, en particulier lorsque l'on s'attache à des différences absolues, susceptibles d'être plus significatives en termes archéologiques que des variations relatives [@baxter2006a]. Il nous semble cependant que cette affirmation soulève un double problème méthodologique.
+L'utilisation des rapports de logarithmes pour l'analyse de données compositionnelles (LRA pour *log-ratio analysis*) issues d'objets archéologiques a été largement débattue au cours des années 2000, pour finalement aboutir à une situation de *statu quo* (pour une revue de cette question, voir @aitchison2002, @baxter2006 et les références citées par ces auteurs). Il est ainsi avancé par certains auteurs que l'utilisation de données standardisées plutôt que de rapports de logarithmes permet d'obtenir dans certaines situations des résultats plus facilement interprétables. Ceci, en particulier lorsque l'on s'attache à des différences absolues, susceptibles d'être plus significatives en termes archéologiques que des variations relatives [@baxter2006a]. Il nous semble cependant que cette affirmation soulève un double problème méthodologique.
 
-D'une part, l'usage des rapports de logarithmes apparaît comme une condition sine qua non dès lors qu'ils permettent une transformation des données depuis un espace dit compositionnel vers un espace euclidien. D'autre part, si ces implications théoriques ne sont pas discutées, la spécificité de la discipline est parfois avancée pour justifier l'étude de données non transformées, en arguant que la connaissance en amont des objets étudiés permettrait seule de surmonter la contrainte de la somme constante. Le problème est alors le suivant : la connaissance en amont du matériel se limite souvent à des a priori sur les artefacts tels qu'ils furent produits et non tels qu'ils se présentent actuellement, après deux mille ans d'une existence souterraine. Il est donc indispensable de considérer l'impact d'un certain nombre de phénomènes (souvent mal connus) tels que les problèmes d'altération et de perturbation. Or, l'analyse de rapports de logarithmes est un outil qui a fait ses preuves pour identifier ces phénomènes sous-jacents, suffisamment robuste pour composer avec les perturbations liées aux matières céramiques anciennes [@aitchison1999; @buxedaigarrigos1999].
+D'une part, l'usage des rapports de logarithmes apparaît comme une condition *sine qua non* dès lors qu'ils permettent de s'affranchir du problème de la contrainte de somme constante au sein des données étudiées. D'autre part, si ces implications théoriques ne sont pas discutées, la spécificité de la discipline est parfois avancée pour justifier l'étude de données non transformées. Ceci en arguant que la connaissance en amont des objets étudiés permettrait seule de surmonter la contrainte de la somme constante. Le problème est alors le suivant : la connaissance en amont du matériel se limite souvent à des *a priori* sur les artefacts tels qu'ils furent produits et non tels qu'ils se présentent actuellement, après deux mille ans d'une existence souterraine. Il est donc indispensable de considérer l'impact d'un certain nombre de phénomènes (souvent mal connus) tels que les problèmes d'altération et de perturbation. Or, l'analyse de rapports de logarithmes est un outil qui a fait ses preuves pour identifier ces phénomènes sous-jacents, suffisamment robuste pour composer avec les perturbations liées aux matières céramiques anciennes [@aitchison1999; @buxedaigarrigos1999].
 
-@buxedaigarrigos1999 a en effet montré que l'usage de la transformation additive permet de s'affranchir de certaines perturbations par un choix judicieux du composé utilisé comme dénominateur de la transformation : en choisissant un composé qui n'est pas directement perturbé. Ici, la plus faible valeur $v_m⁄\tau_{.j}$  est obtenue pour le silicium, qui impose une variabilité de l'ordre de `r round(T_resume["var", "SiO2"] * 100)` % (tab. \@ref(tab:variation-resume)). Une ACP centrée et non réduite de l'ensemble des données, dont on a écarté les composés précédemment identifiés et après une transformation additive en utilisant le composé $\mathrm{SiO_2}$ au dénominateur, illustre bien qu'il n'est pas possible de distinguer les compositions des terres crues et des céramiques du Mas de Moreno une fois isolés les problèmes d'altération (fig. \@ref(fig:acp-alr)).
-
+Nos résultats montrent que l'usage de la transformation additive permet de s'affranchir de certaines perturbations par un choix judicieux du composé utilisé comme dénominateur de la transformation. Ces résultats sont en accords avec les travaux de @buxedaigarrigos1999. Dans le cadre de notre étude, la plus faible valeur $v_m⁄\tau_{.j}$  est obtenue pour le silicium, qui impose une variabilité de l'ordre de `r round(T_resume["var", "SiO2"] * 100)` % (tab. \@ref(tab:variation-resume)). Une ACP centrée et non réduite de l'ensemble des données, dont on a écarté les composés précédemment identifiés et après une transformation additive en utilisant le composé $\mathrm{SiO_2}$ au dénominateur, illustre bien qu'il n'est pas possible de distinguer les compositions des terres crues et des céramiques du Mas de Moreno une fois isolés les problèmes d'altération (fig. \@ref(fig:acp-alr)).
 
 ```{r acp-alr, out.width="100%", fig.width=7, fig.height=3.5, fig.cap="résultats de l'ACP centrée et non réduite des compositions de l'ensemble du corpus après transformation (ALR) en utilisant SiO2 comme dénominateur. (A) projection du nuage des individus ; (B) projection des variables."}
 acp_alr <- corpus %>%
@@ -813,14 +828,18 @@ cowplot::plot_grid(
 ```
 
 # Conclusion
-L'impact du milieu, et notamment de la nature des sols, doit être pris en compte comme source de perturbation des compositions élémentaires. Les processus intervenant après l'abandon des artefacts, notamment liés aux mécanismes de pédogenèse, n'affectent pas argiles et céramiques de la même façon. L'existence d'une altération différentielle en fonction de la nature des matériaux invite pour le moins à la prudence quant à l'application stricte du postulat de provenance lorsqu'il s'agit de comparer des matériaux archéologiques et géologiques.
+Cette étude montre, à travers l'analyse de la production de l'atelier ibérique du Mas de Moreno (céramiques et tessons crus), l'impact du milieu, et notamment de la nature et de l'évolution des sols comme source de perturbation des compositions élémentaires. De plus, les processus intervenant après l'abandon des artefacts, notamment liés aux mécanismes de pédogenèse, n'affectent pas argiles et céramiques de la même façon. L'existence d'une altération différentielle en fonction de la nature des matériaux invite pour le moins à la prudence quant à l'application stricte du postulat de provenance lorsqu'il s'agit de comparer des matériaux archéologiques et géologiques.
 
-L'usage d'une méthodologie appropriée pour le traitement des données de composition, notamment les concepts et outils développés depuis les premiers travaux de J. Aitchison [-@aitchison1986], permet d'identifier correctement les processus en jeu et ainsi de s'en affranchir en partie.
+L'usage d'une méthodologie appropriée pour le traitement des données de composition, notamment les concepts et outils développés depuis les premiers travaux de @aitchison1986, permet d'éviter des biais taphonomiques. Ainsi, l'étude de la matrice de variation permet d'identifier rapidement les composés affectés et fournit des clés d'interprétation quant aux phénomènes en jeu. De plus, elle permet de choisir un composé qui n'est pas directement perturbé comme dénominateur de la transformation des données de compositions, en préalable à la mise en œuvre des méthodes multivariées usuelles.
+
+S'agissant des productions de l'atelier du Mas de Moreno, les problèmes d'altérations et de perturbation des compositions sont désormais bien identifiés et nos résultats montrent qu'il est possible de s'en affranchir. Enfin, loin d'être un cas particulier, l'environnement de l'atelier est caractéristique de la basse vallée de l'Ebre où les formations de surface sont relativement homogènes et dominées par les calcisols. Cette première étude permet donc de poser un cadre méthodologique robuste et ouvre la voie à des investigations élargies en termes d'exploitation des matières premières et de circulation des productions dans la vallée de l'Ebre à la fin du premier millénaire avant notre ère.
 
 # Remerciements
 La présente étude a reçu un soutien financier de l'État géré par l'Agence Nationale de la Recherche au titre du programme Investissements d'avenir portant la référence ANR-10-LABX-52.
 
 Les auteurs tiennent à remercier Alexis Gorgues (UMR 5607 Institut Ausonius) et José Antonio Benavente (Consorcio Patrimonio Ibérico de Aragón) pour l'accès au matériel archéologique, ainsi que Valérie Merle (UMR 5138 ArAr) qui a réalisé l'ensemble des analyses WDXRF.
+
+Les auteurs remercient également les deux relecteurs anonymes, dont les remarques et conseils ont permis d'améliorer la présente publication.
 
 <!-- La ligne suivante insere un saut de page  -->
 \newpage
@@ -831,7 +850,7 @@ Les auteurs tiennent à remercier Alexis Gorgues (UMR 5607 Institut Ausonius) et
 
 \newpage
 
-# Colophon
+# Colophon {-}
 
 Généré le `r Sys.time()` avec l'environnement de calcul et les dépendances suivants: 
 

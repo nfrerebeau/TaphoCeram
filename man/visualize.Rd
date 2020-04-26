@@ -7,9 +7,15 @@
 \usage{
 visualize(x, ...)
 
-\method{visualize}{PCA}(x, axes = c(1, 2), map = c("individuals",
-  "variables", "eigenvalues"), extra = NULL, select = NULL,
-  group = NULL, ...)
+\method{visualize}{PCA}(
+  x,
+  axes = c(1, 2),
+  map = c("individuals", "variables", "eigenvalues"),
+  extra = NULL,
+  select = NULL,
+  group = NULL,
+  ...
+)
 }
 \arguments{
 \item{x}{An object of class \code{\link[FactoMineR]{PCA}} or

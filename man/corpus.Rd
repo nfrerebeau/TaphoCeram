@@ -4,7 +4,8 @@
 \name{corpus}
 \alias{corpus}
 \title{Corpus étudié}
-\format{Un \code{\link[=data.frame]{tableau de données}} de 114 lignes
+\format{
+Un \code{\link[=data.frame]{tableau de données}} de 114 lignes
  (échantillons) et 30 colonnes (variables) :
  \describe{
    \item{sample}{Référence de l'échantillon.}
@@ -17,7 +18,8 @@
    \item{LOI}{Perte-au-feu (pourcents).}
    \item{CaO, Fe2O3, TiO2 , K2O, SiO2 , Al2O3 , MgO, MnO, P2O5,
    Zr, Sr, Rb, Zn, Cr, Ni, La, Ba, V, Ce, Y, Cu}{Teneurs (pourcents).}
- }}
+ }
+}
 \source{
 Frerebeau, N. and Sacilotto, C. (2017). On Some Iberian Unfired
  Pottery Sherds from the Late Iron Age (Second Century BC).
@@ -44,4 +46,9 @@ head(corpus)
 # Résumé des données
 summary(corpus)
 }
+\seealso{
+Other datasets: 
+\code{\link{nmi}}
+}
+\concept{datasets}
 \keyword{datasets}
