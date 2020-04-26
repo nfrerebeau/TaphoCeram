@@ -28,7 +28,7 @@ Please cite this compendium as:
 > code and data for “Analyse de données de composition et identification
 > des altérations géochimiques des matériaux céramiques : le cas des
 > productions d’un atelier ibérique (Teruel, Espagne ; IIe-Ier
-> millénaire avant J.-C.)”*. Accessed YYYY-MM-DD. Online at
+> millénaire avant J.-C.)”*. Accessed 26 avril 2020. Online at
 > <https://doi.org/10.5281/zenodo.2613512>.
 
 ## Licenses
@@ -41,7 +41,7 @@ Please cite this compendium as:
 **Datasets:**
 [CC-BY-SA-4.0](http://creativecommons.org/licenses/by-sa/4.0/).
 
-## Instalation
+## How to download or install
 
 You can download the compendium as a zip from from this
 [URL](http://github.com/nfrerebeau/TaphoCeram/archive/master.zip).
