@@ -13,6 +13,7 @@ packrat::init(
 
 # Setup repository =============================================================
 ## Specify repositories so they get included in packrat.lock file
+my_repos <- vector(mode = "character")
 my_repos["CRAN"] <- "https://cloud.r-project.org/"
 options(repos = my_repos)
 
@@ -21,7 +22,6 @@ options(repos = my_repos)
 ## Install CRAN packages
 cran_packages <- c(
   "akima",
-  "bookdown",
   "compositions",
   "cowplot",
   "dplyr",
@@ -32,20 +32,20 @@ cran_packages <- c(
   "ggtern",
   "kableExtra",
   "khroma",
-  "knitr",
   "magrittr",
   "MASS",
-  "rmarkdown",
   "robCompositions",
-  "roxygen2",
-  "tidyr",
-  "usethis"
+  "tidyr"
 )
 utils::install.packages(cran_packages)
 
 ## Install github packages
 # github_packages <- c("benmarwick/rrtools")
 # remotes::install_github(github_packages)
+
+# Set options ==================================================================
+packrat::opts$external.packages(c("bookdown", "devtools", "knitr",
+                                  "rmarkdown", "roxygen2"))
 
 # Take snapshot ================================================================
 packrat::snapshot(
