@@ -9,7 +9,13 @@ cache:
   packages: true
 
 r:
-- 3.6
+  - 3.6
+
+r_packages:
+  - bookdown
+  - devtools
+  - knitr
+  - rmarkdown
 
 install:
   - R -e "0" --args --bootstrap-packrat
@@ -23,7 +29,6 @@ addons:
 
 script:
     # build and install custom library with custom functions
-  - Rscript -e "install.packages(c('bookdown', 'devtools', 'knitr', 'rmarkdown'))"
   - Rscript -e "devtools::install()"
     # render the main mansucript document into HTML/Word/PDF
   - Rscript -e "rmarkdown::render('analysis/paper/paper.Rmd')"
