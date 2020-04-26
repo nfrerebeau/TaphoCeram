@@ -9,10 +9,9 @@ external.packages:
     knitr
     rmarkdown
     roxygen2
-    codemetar
-local.repos: 
+local.repos:
 load.external.packages.on.startup: TRUE
-ignored.packages: 
+ignored.packages:
 ignored.directories:
     data
     inst

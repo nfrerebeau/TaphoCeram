@@ -1,7 +1,8 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
-language: R
-sudo: false
+language: r
+dist: xenial
+os: linux
 cache:
   directories:
     - $TRAVIS_BUILD_DIR/packrat/src
@@ -11,11 +12,8 @@ cache:
 r:
   - 3.6
 
-r_packages:
-  - bookdown
-  - devtools
-  - knitr
-  - rmarkdown
+before_install:
+  - R -e "utils::install.packages(c('bookdown', 'devtools', 'knitr', 'rmarkdown'))"
 
 install:
   - R -e "0" --args --bootstrap-packrat
@@ -28,11 +26,8 @@ addons:
       - libudunits2-dev
 
 script:
-    # build and install custom library with custom functions
-  - Rscript -e "devtools::install()"
     # render the main mansucript document into HTML/Word/PDF
   - Rscript -e "rmarkdown::render('analysis/paper/paper.Rmd')"
-  - Rscript -e "devtools::uninstall()"
 
 # be more tolerant :)
 warnings_are_errors: false
