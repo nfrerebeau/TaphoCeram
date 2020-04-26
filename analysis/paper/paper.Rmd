@@ -19,7 +19,7 @@ institute:
   - CRP2A: IRAMAT-CRP2A (UMR 5060, CNRS - Université Bordeaux Montaigne). Maison de l\'Archéologie, Université Bordeaux Montaigne, Domaine Universitaire, F-33607 Pessac cedex.
   - LMJL: Laboratoire de Mathématiques Jean Leray (UMR 6629, CNRS - Université de Nantes)
 abstract: |
-  Dans le cadre d'études de provenance des matériaux céramiques, il est courant de comparer la composition élémentaire de matières premières argileuses avec celle d'artefacts archéologiques. Les problèmes d'altération demeurent cependant peu pris en compte et la nature de l'analogie entre matières argileuses et céramiques archéologiques n'est jamais discutée. La présente étude propose ainsi une première comparaison entre des matériaux céramiques et des tessons non cuits retrouvés dans un même contexte archéologique de la fin de l'Âge du Fer. Nos résultats illustrent l'importance d'un traitement adéquat des données de compositions et l'intérêt des développements méthodologiques dans la suite des travaux de J. Aitchison (1986). Cette approche permet d'identifier les processus intervenant après l'abandon des artefacts, notamment liés aux mécanismes de pédogenèse, qui n'affectent pas argiles et céramiques de la même façon. L'existence d'une altération différentielle en fonction de la nature des matériaux invite à la prudence quant à l'application stricte du postulat de provenance lorsqu'il s'agit de comparer des matériaux archéologiques et géologiques.
+  Dans le cadre d'études de provenance des matériaux céramiques, il est courant de comparer la composition élémentaire de matières premières argileuses avec celle d'artefacts archéologiques. Les problèmes d'altération demeurent cependant peu pris en compte. La présente étude propose ainsi une première comparaison entre des matériaux céramiques et des tessons non cuits retrouvés dans un même contexte archéologique de la fin de l'Âge du Fer. Nos résultats illustrent l'importance d'un traitement adéquat des données de compositions géochimiques et l'intérêt des développements méthodologiques dans la suite des travaux de J. Aitchison (1986). Cette approche permet d'identifier les processus intervenant après l'abandon des artefacts et d'éviter des biais taphonomiques, notamment liés aux mécanismes de pédogenèse, qui n'affectent pas argiles et céramiques de la même façon. L'existence d'une altération différentielle en fonction de la nature des matériaux invite à la prudence quant à l'application stricte du postulat de provenance lorsqu'il s'agit de comparer des matériaux archéologiques et géologiques.
 keywords: |
   altération; argiles; céramiques; données de composition; provenance; taphonomie
 output: 
@@ -89,13 +89,16 @@ knitr::include_graphics("../figures/rayshader.png")
 <!-- La ligne suivante insere un saut de page  -->
 \newpage
 
+# Licence {-}
+Distribué selon les termes de la [Licence Creative Commons Attribution - Partage dans les Mêmes Conditions 4.0 International](http://creativecommons.org/licenses/by-sa/4.0/).
+
 # Suivi des modifications {-}
 
 | **Version** | **Date**   | **Description**            | **DOI** |
 |------------:|-----------:|:---------------------------|:--------|
 | 1.0         | 2019-03-26 | Soumis à _ArchéoSciences_  | [10.5281/zenodo.2613513](https://doi.org/10.5281/zenodo.2613513) |
 | 1.1         | 2019-10-15 | Corrections typographiques | [10.5281/zenodo.3490469](https://doi.org/10.5281/zenodo.3490469) |
-| 1.2         | 2020-04-25 | Corrections après relecture |
+| 1.2         | 2020-04-26 | Corrections après relecture |
 
 \newpage
 
