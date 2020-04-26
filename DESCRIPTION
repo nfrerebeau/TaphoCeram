@@ -1,7 +1,7 @@
 Package: TaphoCeram
 Title: Replication of Frerebeau, N., Ben Amara, A. and Cantin, N. (2020)
 Version: 1.2
-Date: 2020-04-25
+Date: 2020-04-26
 Authors@R:
     c(person("Nicolas", "Frerebeau",
             email = "nicolas.frerebeau@u-bordeaux-montaigne.fr",
@@ -50,7 +50,7 @@ Suggests:
     usethis
 VignetteBuilder: knitr
 Collate: 
-    'archeosciences2019-package.R'
     'AllGenerics.R'
+    'TaphoCeram-package.R'
     'data.R'
     'visualize-PCA.R'

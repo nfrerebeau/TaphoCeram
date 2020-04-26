@@ -1,6 +1,3 @@
-#' @include archeosciences2019-package.R
-NULL
-
 #' Get individuals coordinates
 #'
 #' Get coordinates and format the data frame for 'ggplot2'.

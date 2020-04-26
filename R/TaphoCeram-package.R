@@ -1,8 +1,8 @@
 #' @details
 #' \tabular{ll}{
-#'  \strong{Package:} \tab archeosciences2019 \cr
+#'  \strong{Package:} \tab TaphoCeram \cr
 #'  \strong{Type:} \tab Compendium \cr
-#'  \strong{Version:} \tab 1.1 \cr
+#'  \strong{Version:} \tab 1.2 \cr
 #'  \strong{License:} \tab GPL-3 \cr
 #'  \strong{DOI:} \tab \href{https://doi.org/10.5281/zenodo.2613512}{10.5281/zenodo.2613512}
 #' }
@@ -28,8 +28,8 @@
 #' This work received a state financial support managed by the Agence Nationale
 #' de la Recherche (France) throught the program \emph{Investissements d'avenir}
 #' (ref. ANR-10-LABX-52).
-#' @name archeoscience2019-package
-#' @aliases archeoscience2019-package archeoscience2019
+#' @name TaphoCeram-package
+#' @aliases TaphoCeram-package TaphoCeram
 #' @docType package
 #' @keywords internal
 "_PACKAGE"
