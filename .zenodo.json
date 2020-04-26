@@ -1,22 +1,24 @@
 {
     "license": "GPL-3.0-only",
-    "description": "<p>Research compendium of Frerebeau, N., Ben Amara, A. and Cantin, N. (2019) [in french]. The compendium contains all data, code, and text associated with this paper.</p>",
+    "description": "<p>Research compendium of Frerebeau, N., Ben Amara, A. and Cantin, N. (2020) [in french]. The compendium contains all data, code, and text associated with this paper.</p>",
     "language": "fra",
     "journal_title": "Arch\u00e9oSciences : revue d'arch\u00e9om\u00e9trie",
     "notes": "This study received a state financial support managed by the Agence Nationale de la Recherche (France) through the program \"Investissements d'avenir\" (ref. ANR-10-LABX-52).",
+    "title": "Compendium of R code and data for 'Alterations of ceramic materials: compositional data analysis of an Iberian workshop (Teruel, Spain; 2nd millennium BC)'",
+    "publication_type": "article",
     "keywords": [
         "archaeology",
         "archaeometry",
         "compositional data",
         "compendium"
     ],
-    "upload_type": "software",
+    "upload_type": "publication",
     "communities": [
         {
             "identifier": "archaeo"
         }
     ],
-    "publication_date": "2019-03-26",
+    "publication_date": "2020-04-26",
     "creators": [
         {
             "orcid": "0000-0001-5759-4944",
@@ -32,19 +34,5 @@
             "name": "Cantin, Nadia"
         }
     ],
-    "access_right": "open",
-    "related_identifiers": [
-        {
-            "scheme": "doi",
-            "identifier": "10.5281/zenodo.1414297",
-            "relation": "isSupplementedBy",
-            "resource_type": "dataset"
-        },
-        {
-            "scheme": "doi",
-            "identifier": "10.5281/zenodo.2594968",
-            "relation": "isSupplementedBy",
-            "resource_type": "dataset"
-        }
-    ]
+    "access_right": "open"
 }

@@ -45,7 +45,7 @@ utils::install.packages(cran_packages)
 
 # Set options ==================================================================
 packrat::opts$external.packages(c("bookdown", "devtools", "knitr",
-                                  "rmarkdown", "roxygen2"))
+                                  "rmarkdown", "roxygen2", "codemetar"))
 
 # Take snapshot ================================================================
 packrat::snapshot(
