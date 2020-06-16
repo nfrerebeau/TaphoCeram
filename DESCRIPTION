@@ -1,7 +1,7 @@
 Package: TaphoCeram
 Title: Replication of Frerebeau, N., Ben Amara, A. and Cantin, N. (2020)
-Version: 1.2
-Date: 2020-04-26
+Version: 1.3
+Date: 2020-05-20
 Authors@R:
     c(person("Nicolas", "Frerebeau",
             email = "nicolas.frerebeau@u-bordeaux-montaigne.fr",
@@ -18,8 +18,8 @@ Maintainer: Nicolas Frerebeau <nicolas.frerebeau@u-bordeaux-montaigne.fr>
 Description: Research compendium of Frerebeau, N., Ben Amara, A. and Cantin, N. 
     (2020) <doi:xxx> [in french]. The compendium contains all data, code, and 
     text associated with this paper.
-URL: http://github.com/nfrerebeau/TaphoCeram
-BugReports: http://github.com/nfrerebeau/TaphoCeram/issues
+URL: https://github.com/nfrerebeau/TaphoCeram
+BugReports: https://github.com/nfrerebeau/TaphoCeram/issues
 Depends: R (>= 3.6.0)
 License: GPL-3
 Encoding: UTF-8
