@@ -806,8 +806,8 @@ Hash: 709a3da4deef928ab299f4ff52caf66b
 
 Package: xfun
 Source: CRAN
-Version: 0.13
-Hash: 27ad2c3d9cc614cfb92e1bb51b62f5f6
+Version: 0.15
+Hash: cd6e03b0392374cf89622e8468854ff3
 
 Package: xml2
 Source: CRAN
