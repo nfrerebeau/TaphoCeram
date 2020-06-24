@@ -1,8 +1,5 @@
 {
-  "@context": [
-    "https://doi.org/10.5063/schema/codemeta-2.0",
-    "http://schema.org"
-  ],
+  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
   "@type": "SoftwareSourceCode",
   "identifier": "TaphoCeram",
   "description": "Research compendium of Frerebeau, N., Ben Amara, A. and Cantin, N. \n    (2020) <doi:xxx> [in french]. The compendium contains all data, code, and \n    text associated with this paper.",
@@ -329,13 +326,9 @@
   ],
   "releaseNotes": "https://github.com/nfrerebeau/TaphoCeram/blob/master/NEWS.md",
   "readme": "https://github.com/nfrerebeau/TaphoCeram/blob/master/README.md",
+  "fileSize": "22.932KB",
   "contIntegration": "https://travis-ci.org/nfrerebeau/TaphoCeram",
-  "keywords": [
-    "archaeology",
-    "archaeometry",
-    "compositional-data",
-    "compendium"
-  ],
+  "keywords": ["archaeology", "archaeometry", "compositional-data", "compendium"],
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -362,6 +355,5 @@
       "@id": "https://doi.org/10.5281/zenodo.2613512",
       "sameAs": "https://doi.org/10.5281/zenodo.2613512"
     }
-  ],
-  "fileSize": "22.917KB"
+  ]
 }

@@ -15,7 +15,7 @@ Research compendium of Frerebeau, N., Ben Amara, A. and Cantin, N.
 \tabular{ll}{
  \strong{Package:} \tab TaphoCeram \cr
  \strong{Type:} \tab Compendium \cr
- \strong{Version:} \tab 1.2 \cr
+ \strong{Version:} \tab 1.3 \cr
  \strong{License:} \tab GPL-3 \cr
  \strong{DOI:} \tab \href{https://doi.org/10.5281/zenodo.2613512}{10.5281/zenodo.2613512}
 }
@@ -28,8 +28,8 @@ de la Recherche (France) throught the program \emph{Investissements d'avenir}
 \seealso{
 Useful links:
 \itemize{
-  \item \url{http://github.com/nfrerebeau/TaphoCeram}
-  \item Report bugs at \url{http://github.com/nfrerebeau/TaphoCeram/issues}
+  \item \url{https://github.com/nfrerebeau/TaphoCeram}
+  \item Report bugs at \url{https://github.com/nfrerebeau/TaphoCeram/issues}
 }
 
 }

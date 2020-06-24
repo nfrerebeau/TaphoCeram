@@ -2,7 +2,7 @@
 #' \tabular{ll}{
 #'  \strong{Package:} \tab TaphoCeram \cr
 #'  \strong{Type:} \tab Compendium \cr
-#'  \strong{Version:} \tab 1.2 \cr
+#'  \strong{Version:} \tab 1.3 \cr
 #'  \strong{License:} \tab GPL-3 \cr
 #'  \strong{DOI:} \tab \href{https://doi.org/10.5281/zenodo.2613512}{10.5281/zenodo.2613512}
 #' }

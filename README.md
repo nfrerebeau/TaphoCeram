@@ -14,7 +14,7 @@ This repository contains the data and code for our paper (in french):
 > Frerebeau, N., Ben Amara, A. et Cantin, N. (2020). Analyse de données
 > de composition et identification des altérations géochimiques des
 > matériaux céramiques : le cas des productions d’un atelier ibérique
-> (Teruel, Espagne ; IIe-Ier millénaire avant J.-C.). *Archéosciences,
+> (Teruel, Espagne ; IIe-Ier siècles avant J.-C.). *Archéosciences,
 > revue d’Archéométrie*, X, p. X-X. DOI : <https://doi.org/xxx/xxx>.
 
 The files hosted in this repository are the development versions and may
@@ -25,10 +25,9 @@ have changed since the paper was published.
 Please cite this compendium as:
 
 > Frerebeau, N., Ben Amara, A. and Cantin, N. (2020). *Compendium of R
-> code and data for “Analyse de données de composition et identification
-> des altérations géochimiques des matériaux céramiques : le cas des
-> productions d’un atelier ibérique (Teruel, Espagne ; IIe-Ier
-> millénaire avant J.-C.)”*. Accessed 26 avril 2020. Online at
+> code and data for “Alterations of ceramic materials: compositional
+> data analysis of an Iberian workshop (Teruel, Spain; 2nd-1st c. BC)”*.
+> Accessed 16 juin 2020. Online at
 > <https://doi.org/10.5281/zenodo.2613512>.
 
 ## Licenses

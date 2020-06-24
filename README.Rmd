@@ -14,7 +14,8 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 # Please put your title here to include it in the file below.
-Title <- "Analyse de données de composition et identification des altérations géochimiques des matériaux céramiques : le cas des productions d’un atelier ibérique (Teruel, Espagne ; IIe-Ier millénaire avant J.-C.)"
+title_fr <- "Analyse de données de composition et identification des altérations géochimiques des matériaux céramiques : le cas des productions d’un atelier ibérique (Teruel, Espagne ; IIe-Ier siècles avant J.-C.)"
+title_en <- "Alterations of ceramic materials: compositional data analysis of an Iberian workshop (Teruel, Spain; 2nd-1st c. BC)"
 ```
 
 # TaphoCeram
@@ -25,7 +26,7 @@ Title <- "Analyse de données de composition et identification des altérations 
 
 This repository contains the data and code for our paper (in french):
 
-> Frerebeau, N., Ben Amara, A. et Cantin, N. (2020). `r Title`. _Archéosciences, revue d'Archéométrie_, X, p. X-X. DOI : <https://doi.org/xxx/xxx>.
+> Frerebeau, N., Ben Amara, A. et Cantin, N. (2020). `r title_fr`. _Archéosciences, revue d'Archéométrie_, X, p. X-X. DOI : <https://doi.org/xxx/xxx>.
 
 The files hosted in this repository are the development versions and may have changed since the paper was published.
 
@@ -33,7 +34,7 @@ The files hosted in this repository are the development versions and may have ch
 
 Please cite this compendium as:
 
-> Frerebeau, N., Ben Amara, A. and Cantin, N. (`r format(Sys.Date(), "%Y")`). _Compendium of R code and data for "`r Title`"_. Accessed `r format(Sys.Date(), "%d %b %Y")`. Online at <https://doi.org/10.5281/zenodo.2613512>.
+> Frerebeau, N., Ben Amara, A. and Cantin, N. (`r format(Sys.Date(), "%Y")`). _Compendium of R code and data for "`r title_en`"_. Accessed `r format(Sys.Date(), "%d %b %Y")`. Online at <https://doi.org/10.5281/zenodo.2613512>.
 
 ## Licenses
 
