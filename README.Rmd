@@ -22,11 +22,10 @@ title_en <- "Alterations of ceramic materials: compositional data analysis of an
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2613512.svg)](https://doi.org/10.5281/zenodo.2613512)
 [![GitHub Release](https://img.shields.io/github/release/nfrerebeau/TaphoCeram.svg)](https://github.com/nfrerebeau/TaphoCeram/releases)
-[![Travis-CI Build Status](https://travis-ci.org/nfrerebeau/TaphoCeram.svg?branch=master)](https://travis-ci.org/nfrerebeau/TaphoCeram)
 
 This repository contains the data and code for our paper (in french):
 
-> Frerebeau, N., Ben Amara, A. et Cantin, N. (2020). `r title_fr`. _Archéosciences, revue d'Archéométrie_, X, p. X-X. DOI : <https://doi.org/xxx/xxx>.
+> Frerebeau, N., Ben Amara, A. et Cantin, N. (2020). `r title_fr`. _Archéosciences, revue d'Archéométrie_, 44(1), p. 33-50. DOI : <https://doi.org/10.4000/archeosciences.7220>.
 
 The files hosted in this repository are the development versions and may have changed since the paper was published.
 
@@ -38,11 +37,11 @@ Please cite this compendium as:
 
 ## Licenses
 
-**Text and figures:** [CC-BY-SA-4.0](http://creativecommons.org/licenses/by-sa/4.0/).
+**Text and figures:** [CC-BY-4.0](http://creativecommons.org/licenses/by/4.0/).
 
 **Code:** see the [DESCRIPTION](DESCRIPTION) file.
 
-**Datasets:** [CC-BY-SA-4.0](http://creativecommons.org/licenses/by-sa/4.0/).
+**Datasets:** [CC-BY-4.0](http://creativecommons.org/licenses/by/4.0/).
 
 ## How to download or install
 
@@ -75,4 +74,4 @@ The `R/` directory contains the custom R functions used in this project. Dataset
 
 ## Dependencies
 
-The original manuscript was produced with R 3.6.3. See the [DESCRIPTION](DESCRIPTION) file for a full list of the packages that this project depends on, including the suggested packages. The `packrat/` directory contains the source code for all the packages we depend on. If all works well, these will be installed on your machine when you open `TaphoCeram.Rproj` in RStudio.
+The original manuscript was produced with R 3.6.3. See the [DESCRIPTION](DESCRIPTION) file for a full list of the packages that this project depends on, including the suggested packages.

@@ -5,7 +5,7 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "TaphoCeram",
-  "description": "Research compendium of Frerebeau, N., Ben Amara, A. and Cantin, N. \n    (2020) <doi:xxx> [in french]. The compendium contains all data, code, and \n    text associated with this paper.",
+  "description": "Research compendium of Frerebeau, N., Ben Amara, A. and\n    Cantin, N.  (2020) <doi:10.4000/archeosciences.7220> [in french]. The\n    compendium contains all data, code, and text associated with this\n    paper.",
   "name": "TaphoCeram: Replication of Frerebeau, N., Ben Amara, A. and Cantin, N. (2020)",
   "codeRepository": "https://github.com/nfrerebeau/TaphoCeram",
   "issueTracker": "https://github.com/nfrerebeau/TaphoCeram/issues",
@@ -14,10 +14,9 @@
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.6.3",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.6.3 (2020-02-29)",
+  "runtimePlatform": "R version 4.0.3 (2020-10-10)",
   "author": [
     {
       "@type": "Person",
@@ -99,18 +98,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=knitr"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "packrat",
-      "name": "packrat",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=packrat"
     },
     {
       "@type": "SoftwareApplication",
@@ -329,8 +316,7 @@
   ],
   "releaseNotes": "https://github.com/nfrerebeau/TaphoCeram/blob/master/NEWS.md",
   "readme": "https://github.com/nfrerebeau/TaphoCeram/blob/master/README.md",
-  "fileSize": "22.93KB",
-  "contIntegration": "https://travis-ci.org/nfrerebeau/TaphoCeram",
+  "fileSize": "1202.284KB",
   "keywords": [
     "archaeology",
     "archaeometry",

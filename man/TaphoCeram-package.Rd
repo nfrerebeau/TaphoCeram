@@ -7,9 +7,9 @@
 \alias{TaphoCeram}
 \title{TaphoCeram: Replication of Frerebeau, N., Ben Amara, A. and Cantin, N. (2020)}
 \description{
-Research compendium of Frerebeau, N., Ben Amara, A. and Cantin, N. 
-    (2020) <doi:xxx> [in french]. The compendium contains all data, code, and 
-    text associated with this paper.
+Research compendium of Frerebeau, N., Ben Amara, A. and Cantin, N.
+    (2020) <doi:10.4000/archeosciences.7220> [in french]. The compendium
+    contains all data, code, and text associated with this paper.
 }
 \details{
 \tabular{ll}{
